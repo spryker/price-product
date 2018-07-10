@@ -12,9 +12,9 @@ use Generated\Shared\Transfer\PriceProductTransfer;
 interface PriceProductMapperPluginExecutorInterface
 {
     /**
-     * @param PriceProductTransfer $priceProductTransfer
+     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
      *
-     * @return PriceProductTransfer[]
+     * @return \Generated\Shared\Transfer\PriceProductTransfer[]
      */
     public function executePriceExtractorPlugins(PriceProductTransfer $priceProductTransfer): array;
 }
