@@ -131,4 +131,18 @@ class PriceProductConcreteReader implements PriceProductConcreteReaderInterface
 
         return (int)$idPriceProduct;
     }
+
+    /**
+     * @param string $sku
+     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
+     *
+     * @return array|null
+     */
+    public function findProductConcretePriceBySkuAndCriteria(string $sku, PriceProductCriteriaTransfer $priceProductCriteriaTransfer): ?array
+    {
+        return $this->priceProductQueryContainer
+            ->queryProductConcretePricesBySkuAndCriteria($sku, $priceProductCriteriaTransfer)
+            ->setFormatter(ArrayFormatter::class)
+            ->findOne();
+    }
 }

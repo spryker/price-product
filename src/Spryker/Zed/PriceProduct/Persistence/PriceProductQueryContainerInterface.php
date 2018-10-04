@@ -8,6 +8,7 @@
 namespace Spryker\Zed\PriceProduct\Persistence;
 
 use Generated\Shared\Transfer\PriceProductCriteriaTransfer;
+use Orm\Zed\PriceProduct\Persistence\SpyPriceProductStoreQuery;
 
 interface PriceProductQueryContainerInterface
 {
@@ -144,4 +145,24 @@ interface PriceProductQueryContainerInterface
      * @return \Orm\Zed\PriceProduct\Persistence\SpyPriceProductQuery
      */
     public function queryPriceProductForAbstractProduct($idProductAbstract, $idPriceType);
+
+    /**
+     * @api
+     *
+     * @param string $concreteSku
+     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
+     *
+     * @return \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStoreQuery
+     */
+    public function queryProductConcretePricesBySkuAndCriteria(string $concreteSku, PriceProductCriteriaTransfer $priceProductCriteriaTransfer): SpyPriceProductStoreQuery;
+
+    /**
+     * @api
+     *
+     * @param string $abstractSku
+     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
+     *
+     * @return \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStoreQuery
+     */
+    public function queryProductAbstractPricesBySkuAndCriteria(string $abstractSku, PriceProductCriteriaTransfer $priceProductCriteriaTransfer): SpyPriceProductStoreQuery;
 }
