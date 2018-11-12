@@ -106,6 +106,19 @@ class Reader implements ReaderInterface
     }
 
     /**
+     * @param \Generated\Shared\Transfer\PriceProductFilterTransfer $priceProductFilterTransfer
+     *
+     * @return \Generated\Shared\Transfer\PriceProductTransfer|null
+     */
+    public function findPriceProductFor(PriceProductFilterTransfer $priceProductFilterTransfer): ?PriceProductTransfer
+    {
+        $priceProductFilterTransfer->requireSku();
+        $priceProductCriteriaTransfer = $this->priceProductCriteriaBuilder->buildCriteriaFromFilter($priceProductFilterTransfer);
+
+        return $this->findProductPriceTransfer($priceProductFilterTransfer->getSku(), $priceProductCriteriaTransfer);
+    }
+
+    /**
      * @param int $idProductConcrete
      * @param int $idProductAbstract
      *
@@ -344,6 +357,35 @@ class Reader implements ReaderInterface
      * @param string $sku
      * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
      *
+     * @return \Generated\Shared\Transfer\PriceProductTransfer|null
+     */
+    protected function findProductPriceTransfer(string $sku, PriceProductCriteriaTransfer $priceProductCriteriaTransfer): ?PriceProductTransfer
+    {
+        $priceProductConcrete = $this->priceProductConcreteReader
+            ->findPriceForProductConcrete($sku, $priceProductCriteriaTransfer);
+
+        if ($priceProductConcrete !== null) {
+            return $this->createPriceProductTransferFromPriceData($priceProductConcrete);
+        }
+
+        if ($this->productFacade->hasProductConcrete($sku)) {
+            $sku = $this->productFacade->getAbstractSkuFromProductConcrete($sku);
+        }
+
+        $priceProductAbstract = $this->priceProductAbstractReader
+            ->findPriceForProductAbstract($sku, $priceProductCriteriaTransfer);
+
+        if (!$priceProductAbstract) {
+            return null;
+        }
+
+        return $this->createPriceProductTransferFromPriceData($priceProductAbstract);
+    }
+
+    /**
+     * @param string $sku
+     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
+     *
      * @return bool
      */
     protected function isValidPrice($sku, PriceProductCriteriaTransfer $priceProductCriteriaTransfer)
@@ -373,5 +415,20 @@ class Reader implements ReaderInterface
         }
 
         return $productPrice[PriceProductQueryContainerInterface::COL_GROSS_PRICE];
+    }
+
+    /**
+     * @param array $priceData
+     *
+     * @return \Generated\Shared\Transfer\PriceProductTransfer
+     */
+    protected function createPriceProductTransferFromPriceData(array $priceData): PriceProductTransfer
+    {
+        $priceProductTransfer = (new PriceProductTransfer())->fromArray($priceData, true);
+        $priceProductTransfer->setMoneyValue((new MoneyValueTransfer())
+            ->setGrossAmount($priceData[PriceProductQueryContainerInterface::COL_GROSS_PRICE])
+            ->setNetAmount($priceData[PriceProductQueryContainerInterface::COL_NET_PRICE]));
+
+        return $priceProductTransfer;
     }
 }

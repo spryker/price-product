@@ -63,4 +63,12 @@ interface PriceProductAbstractReaderInterface
      * @return \Generated\Shared\Transfer\PriceProductTransfer|null
      */
     public function findProductAbstractPrice($idAbstractProduct, $priceTypeName = null);
+
+    /**
+     * @param string $sku
+     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
+     *
+     * @return array|null
+     */
+    public function findProductAbstractPriceBySkuAndCriteria(string $sku, PriceProductCriteriaTransfer $priceProductCriteriaTransfer): ?array;
 }

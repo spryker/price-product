@@ -8,6 +8,7 @@
 namespace Spryker\Zed\PriceProduct\Business\Model;
 
 use Generated\Shared\Transfer\PriceProductFilterTransfer;
+use Generated\Shared\Transfer\PriceProductTransfer;
 
 interface ReaderInterface
 {
@@ -25,6 +26,13 @@ interface ReaderInterface
      * @return int
      */
     public function findPriceFor(PriceProductFilterTransfer $priceProductFilterTransfer);
+
+    /**
+     * @param \Generated\Shared\Transfer\PriceProductFilterTransfer $priceProductFilterTransfer
+     *
+     * @return \Generated\Shared\Transfer\PriceProductTransfer|null
+     */
+    public function findPriceProductFor(PriceProductFilterTransfer $priceProductFilterTransfer): ?PriceProductTransfer;
 
     /**
      * @param string $sku

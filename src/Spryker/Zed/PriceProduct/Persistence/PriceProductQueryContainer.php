@@ -11,6 +11,7 @@ use Generated\Shared\Transfer\PriceProductCriteriaTransfer;
 use Orm\Zed\PriceProduct\Persistence\Map\SpyPriceProductStoreTableMap;
 use Orm\Zed\PriceProduct\Persistence\Map\SpyPriceProductTableMap;
 use Orm\Zed\PriceProduct\Persistence\Map\SpyPriceTypeTableMap;
+use Orm\Zed\PriceProduct\Persistence\SpyPriceProductStoreQuery;
 use Orm\Zed\Product\Persistence\Map\SpyProductAbstractTableMap;
 use Orm\Zed\Product\Persistence\Map\SpyProductTableMap;
 use PDO;
@@ -303,5 +304,66 @@ class PriceProductQueryContainer extends AbstractQueryContainer implements Price
             ->createPriceProductQuery()
             ->filterByFkProductAbstract($idProductAbstract)
             ->filterByFkPriceType($idPriceType);
+    }
+
+    /**
+     * @api
+     *
+     * @param string $concreteSku
+     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
+     *
+     * @return \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStoreQuery
+     */
+    public function queryProductConcretePricesBySkuAndCriteria(string $concreteSku, PriceProductCriteriaTransfer $priceProductCriteriaTransfer): SpyPriceProductStoreQuery
+    {
+        return $this->getPriceProductStoreQueryJoinWithPriceProduct($priceProductCriteriaTransfer)
+            ->addJoin([
+                SpyPriceProductTableMap::COL_FK_PRODUCT,
+                SpyProductTableMap::COL_SKU,
+            ], [
+                SpyProductTableMap::COL_ID_PRODUCT,
+                $this->getConnection()->quote($concreteSku),
+            ]);
+    }
+
+    /**
+     * @api
+     *
+     * @param string $abstractSku
+     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
+     *
+     * @return \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStoreQuery
+     */
+    public function queryProductAbstractPricesBySkuAndCriteria(string $abstractSku, PriceProductCriteriaTransfer $priceProductCriteriaTransfer): SpyPriceProductStoreQuery
+    {
+        return $this->getPriceProductStoreQueryJoinWithPriceProduct($priceProductCriteriaTransfer)
+            ->addJoin([
+                SpyPriceProductTableMap::COL_FK_PRODUCT_ABSTRACT,
+                SpyProductAbstractTableMap::COL_SKU,
+            ], [
+                SpyProductAbstractTableMap::COL_ID_PRODUCT_ABSTRACT,
+                $this->getConnection()->quote($abstractSku),
+            ]);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
+     *
+     * @return \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStoreQuery
+     */
+    protected function getPriceProductStoreQueryJoinWithPriceProduct(PriceProductCriteriaTransfer $priceProductCriteriaTransfer): SpyPriceProductStoreQuery
+    {
+        $priceProductStoreQuery = $this->getFactory()
+            ->createPriceProductStoreQuery();
+
+        if ($priceProductCriteriaTransfer->getIdStore()) {
+            $priceProductStoreQuery->filterByFkStore($priceProductCriteriaTransfer->getIdStore());
+        }
+
+        if ($priceProductCriteriaTransfer->getIdCurrency()) {
+            $priceProductStoreQuery->filterByFkCurrency($priceProductCriteriaTransfer->getIdCurrency());
+        }
+
+        return $priceProductStoreQuery->joinWithPriceProduct();
     }
 }

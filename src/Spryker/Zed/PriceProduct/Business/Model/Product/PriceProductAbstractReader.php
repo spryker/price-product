@@ -104,6 +104,20 @@ class PriceProductAbstractReader implements PriceProductAbstractReaderInterface
 
     /**
      * @param string $sku
+     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
+     *
+     * @return array|null
+     */
+    public function findProductAbstractPriceBySkuAndCriteria(string $sku, PriceProductCriteriaTransfer $priceProductCriteriaTransfer): ?array
+    {
+        return $this->priceProductQueryContainer
+            ->queryProductAbstractPricesBySkuAndCriteria($sku, $priceProductCriteriaTransfer)
+            ->setFormatter(ArrayFormatter::class)
+            ->findOne();
+    }
+
+    /**
+     * @param string $sku
      *
      * @return string
      */
