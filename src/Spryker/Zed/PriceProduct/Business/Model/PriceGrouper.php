@@ -55,7 +55,6 @@ class PriceGrouper implements PriceGrouperInterface
         string $sku,
         ?PriceProductDimensionTransfer $priceProductDimensionTransfer = null
     ): array {
-
         if (!$priceProductDimensionTransfer) {
             $priceProductDimensionTransfer = (new PriceProductDimensionTransfer())
                 ->setType($this->config->getPriceDimensionDefault());
@@ -94,10 +93,11 @@ class PriceGrouper implements PriceGrouperInterface
         $priceType = $priceProductTransfer->getPriceType()->getName();
         $currencyIsoCode = $priceMoneyValueTransfer->getCurrency()->getCode();
 
-        if (!isset($prices[$currencyIsoCode][SharedPriceProductConfig::PRICE_DATA])
+        if (
+            !isset($prices[$currencyIsoCode][SharedPriceProductConfig::PRICE_DATA])
             || $priceMoneyValueTransfer->getPriceData() !== null
         ) {
-            $prices[$currencyIsoCode][SharedPriceProductConfig::PRICE_DATA] = $priceMoneyValueTransfer->getPriceData();
+            $prices = $this->setPriceData($prices, $priceProductTransfer);
         }
 
         if ($priceMoneyValueTransfer->getGrossAmount() !== null) {
@@ -107,6 +107,26 @@ class PriceGrouper implements PriceGrouperInterface
         if ($priceMoneyValueTransfer->getNetAmount() !== null) {
             $prices[$currencyIsoCode][$this->priceProductMapper->getNetPriceModeIdentifier()][$priceType] = $priceMoneyValueTransfer->getNetAmount();
         }
+
+        return $prices;
+    }
+
+    /**
+     * @param array $prices
+     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
+     *
+     * @return array
+     */
+    protected function setPriceData(array $prices, PriceProductTransfer $priceProductTransfer): array
+    {
+        $priceMoneyValueTransfer = $priceProductTransfer->getMoneyValue();
+        $priceType = $priceProductTransfer->getPriceType()->getName();
+        $currencyIsoCode = $priceMoneyValueTransfer->getCurrency()->getCode();
+
+        if ($priceType === $this->config->getPriceTypeDefaultName()) {
+            $prices[$currencyIsoCode][SharedPriceProductConfig::PRICE_DATA] = $priceMoneyValueTransfer->getPriceData();
+        }
+        $prices[$currencyIsoCode][SharedPriceProductConfig::PRICE_DATA_BY_PRICE_TYPE][$priceType] = $priceMoneyValueTransfer->getPriceData();
 
         return $prices;
     }
