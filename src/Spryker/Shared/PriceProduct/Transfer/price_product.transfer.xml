@@ -90,6 +90,7 @@
         <property name="quantity" type="int" />
         <property name="sumPrice" type="int" />
         <property name="priceData" type="string"/>
+        <property name="priceDataByPriceType" type="array" singular="priceDataByPriceType"/>
     </transfer>
 
 </transfers>
