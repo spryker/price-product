@@ -1,4 +1,4 @@
-<?php
+4<?php
 
 /**
  * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
@@ -119,9 +119,16 @@ class PriceGrouper implements PriceGrouperInterface
      */
     protected function setPriceData(array $prices, PriceProductTransfer $priceProductTransfer): array
     {
-        $priceMoneyValueTransfer = $priceProductTransfer->getMoneyValue();
-        $priceType = $priceProductTransfer->getPriceType()->getName();
-        $currencyIsoCode = $priceMoneyValueTransfer->getCurrency()->getCode();
+        /** @var \Generated\Shared\Transfer\MoneyValueTransfer $priceMoneyValueTransfer */
+        $priceMoneyValueTransfer = $priceProductTransfer->requireMoneyValue()->getMoneyValue();
+
+        /** @var \Generated\Shared\Transfer\PriceTypeTransfer $priceTypeTransfer */
+        $priceTypeTransfer = $priceProductTransfer->requirePriceType()->getPriceType();
+        $priceType = $priceTypeTransfer->getName();
+
+        /** @var \Generated\Shared\Transfer\CurrencyTransfer $currencyTransfer */
+        $currencyTransfer = $priceMoneyValueTransfer->requireCurrency()->getCurrency();
+        $currencyIsoCode = $currencyTransfer->getCode();
 
         if ($priceType === $this->config->getPriceTypeDefaultName()) {
             $prices[$currencyIsoCode][SharedPriceProductConfig::PRICE_DATA] = $priceMoneyValueTransfer->getPriceData();

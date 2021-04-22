@@ -286,6 +286,7 @@ interface PriceProductFacadeInterface
      * Specification:
      * - Groups provided transfers by currency, price mode and price type.
      * - Groups provided transfers `priceData` by currency only for BC reasons.
+     * - Groups provided transfers `priceData` by currency and price type.
      *
      * Example:
      *   $result = [

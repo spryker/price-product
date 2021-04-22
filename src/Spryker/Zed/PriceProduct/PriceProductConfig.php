@@ -15,14 +15,6 @@ use Spryker\Zed\Kernel\AbstractBundleConfig;
 class PriceProductConfig extends AbstractBundleConfig
 {
     /**
-     * Specification:
-     * - Price data by price type.
-     *
-     * @api
-     */
-    public const PRICE_DATA_BY_PRICE_TYPE = 'priceDataByPriceType';
-
-    /**
      * @return string
      */
     public function getPriceTypeDefaultName()
