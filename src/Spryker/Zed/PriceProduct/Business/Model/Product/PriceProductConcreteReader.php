@@ -243,15 +243,15 @@ class PriceProductConcreteReader implements PriceProductConcreteReaderInterface
     }
 
     /**
-     * @param array<string> $concreteSkus
+     * @param array<string> $skus
      * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
      *
      * @return array<\Generated\Shared\Transfer\PriceProductTransfer>
      */
-    public function getProductConcretePricesByConcreteSkusAndCriteria(array $concreteSkus, PriceProductCriteriaTransfer $priceProductCriteriaTransfer): array
+    public function getProductConcretePricesByConcreteSkusAndCriteria(array $skus, PriceProductCriteriaTransfer $priceProductCriteriaTransfer): array
     {
-        $priceProductTransfers = $this->priceProductRepository->getProductConcretePricesByConcreteSkusAndCriteria($concreteSkus, $priceProductCriteriaTransfer);
-        $priceProductTransfers = $this->executePriceProductExternalProviderPlugins($priceProductTransfers, $concreteSkus, $priceProductCriteriaTransfer);
+        $priceProductTransfers = $this->priceProductRepository->getProductConcretePricesByConcreteSkusAndCriteria($skus, $priceProductCriteriaTransfer);
+        $priceProductTransfers = $this->executePriceProductExternalProviderPlugins($priceProductTransfers, $skus, $priceProductCriteriaTransfer);
         $priceProductTransfers = $this->priceProductExpander->expandPriceProductTransfers($priceProductTransfers);
         $priceProductTransfers = $this->pluginExecutor->executePriceExtractorPluginsForProductConcrete($priceProductTransfers);
 
