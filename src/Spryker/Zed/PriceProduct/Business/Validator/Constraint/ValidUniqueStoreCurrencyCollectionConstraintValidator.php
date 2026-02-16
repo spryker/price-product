@@ -25,7 +25,7 @@ class ValidUniqueStoreCurrencyCollectionConstraintValidator extends AbstractCons
      */
     public function validate($value, Constraint $constraint): void
     {
-        if (!$value instanceof Traversable) {
+        if (!$value instanceof Traversable) { // @phpstan-ignore instanceof.alwaysTrue
             throw new UnexpectedTypeException($value, Traversable::class);
         }
 
@@ -36,7 +36,7 @@ class ValidUniqueStoreCurrencyCollectionConstraintValidator extends AbstractCons
         $existingKeys = [];
 
         foreach ($value as $position => $priceProductTransfer) {
-            if (!$priceProductTransfer instanceof PriceProductTransfer) {
+            if (!$priceProductTransfer instanceof PriceProductTransfer) { // @phpstan-ignore instanceof.alwaysTrue
                 throw new UnexpectedTypeException($priceProductTransfer, PriceProductTransfer::class);
             }
 

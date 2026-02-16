@@ -50,7 +50,7 @@ class TransferConstraint extends Composite
     {
         parent::initializeNestedConstraints();
 
-        if (!is_array($this->fields)) {
+        if (!is_array($this->fields)) { // @phpstan-ignore function.alreadyNarrowedType
             throw new ConstraintDefinitionException(sprintf('The option "%s" is expected to be an array in constraint "%s".', static::FIELDS, static::class));
         }
     }

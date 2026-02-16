@@ -26,7 +26,7 @@ class ValidUniqueStoreCurrencyGrossNetConstraintValidator extends AbstractConstr
      */
     public function validate($value, Constraint $constraint): void
     {
-        if (!$value instanceof PriceProductTransfer) {
+        if (!$value instanceof PriceProductTransfer) { // @phpstan-ignore instanceof.alwaysTrue
             throw new UnexpectedTypeException($value, PriceProductTransfer::class);
         }
 
@@ -70,7 +70,7 @@ class ValidUniqueStoreCurrencyGrossNetConstraintValidator extends AbstractConstr
         $priceProductMoneyValueTransfer = $priceProductTransfer->getMoneyValue();
         if (
             $priceProductTransfers->count() > 1
-            || ($priceProductTransfers->count() === 1
+            || ($priceProductTransfers->count() === 1 // @phpstan-ignore identical.alwaysTrue
                 && $priceProductMoneyValueTransfer->getIdEntity() !== $moneyValueTransfer->getIdEntity())
         ) {
             $this->context->addViolation($constraint->getMessage());

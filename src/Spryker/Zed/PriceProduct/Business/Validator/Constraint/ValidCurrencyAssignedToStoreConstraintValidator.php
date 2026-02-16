@@ -24,7 +24,7 @@ class ValidCurrencyAssignedToStoreConstraintValidator extends AbstractConstraint
      */
     public function validate($value, Constraint $constraint): void
     {
-        if (!$value instanceof PriceProductTransfer) {
+        if (!$value instanceof PriceProductTransfer) { // @phpstan-ignore instanceof.alwaysTrue
             throw new UnexpectedTypeException($value, PriceProductTransfer::class);
         }
 

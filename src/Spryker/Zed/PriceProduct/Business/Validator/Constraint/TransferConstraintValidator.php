@@ -37,7 +37,7 @@ class TransferConstraintValidator extends ConstraintValidator
         }
         $value = $value->toArray(false, true);
         foreach ($constraint->fields as $field => $fieldConstraint) {
-            $existsInArray = is_array($value) && array_key_exists($field, $value);
+            $existsInArray = is_array($value) && array_key_exists($field, $value); // @phpstan-ignore function.alreadyNarrowedType
 
             if (!$existsInArray) {
                 $this->context->buildViolation($constraint->getMissingFieldsMessage())
