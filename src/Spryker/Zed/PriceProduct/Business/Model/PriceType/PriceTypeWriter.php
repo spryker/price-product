@@ -17,9 +17,6 @@ class PriceTypeWriter implements PriceTypeWriterInterface
      */
     protected $priceProductQueryContainer;
 
-    /**
-     * @param \Spryker\Zed\PriceProduct\Persistence\PriceProductQueryContainerInterface $priceProductQueryContainer
-     */
     public function __construct(PriceProductQueryContainerInterface $priceProductQueryContainer)
     {
         $this->priceProductQueryContainer = $priceProductQueryContainer;

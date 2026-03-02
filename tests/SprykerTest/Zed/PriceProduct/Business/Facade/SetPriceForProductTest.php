@@ -28,9 +28,6 @@ class SetPriceForProductTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testSetPriceForProductShouldUpdateExistingPrice(): void
     {
         if ($this->tester->isDynamicStoreEnabled()) {

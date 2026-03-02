@@ -28,9 +28,6 @@ class GetDefaultPriceTypeNameTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testGetDefaultPriceTypeNameShouldReturnDefaultTypeName(): void
     {
         // Act

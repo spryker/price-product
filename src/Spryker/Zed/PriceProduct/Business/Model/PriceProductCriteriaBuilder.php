@@ -59,13 +59,6 @@ class PriceProductCriteriaBuilder implements PriceProductCriteriaBuilderInterfac
      */
     protected static $defaultCurrencyTransferForCurrentStoreCache;
 
-    /**
-     * @param \Spryker\Zed\PriceProduct\Business\Currency\CurrencyReaderInterface $currencyReader
-     * @param \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToPriceFacadeInterface $priceFacade
-     * @param \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToStoreFacadeInterface $storeFacade
-     * @param \Spryker\Zed\PriceProduct\Business\Model\PriceType\PriceProductTypeReaderInterface $priceProductTypeReader
-     * @param \Spryker\Zed\PriceProduct\PriceProductConfig $config
-     */
     public function __construct(
         CurrencyReaderInterface $currencyReader,
         PriceProductToPriceFacadeInterface $priceFacade,
@@ -80,11 +73,6 @@ class PriceProductCriteriaBuilder implements PriceProductCriteriaBuilderInterfac
         $this->config = $config;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductFilterTransfer $priceProductFilterTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductCriteriaTransfer
-     */
     public function buildCriteriaFromFilter(PriceProductFilterTransfer $priceProductFilterTransfer): PriceProductCriteriaTransfer
     {
         return (new PriceProductCriteriaTransfer())
@@ -132,11 +120,6 @@ class PriceProductCriteriaBuilder implements PriceProductCriteriaBuilderInterfac
             );
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductFilterTransfer $priceFilterTransfer
-     *
-     * @return string
-     */
     protected function getPriceModeFromFilter(PriceProductFilterTransfer $priceFilterTransfer): string
     {
         $priceMode = $priceFilterTransfer->getPriceMode();
@@ -296,9 +279,6 @@ class PriceProductCriteriaBuilder implements PriceProductCriteriaBuilderInterfac
         return $indexedCurrencyTransfers;
     }
 
-    /**
-     * @return string
-     */
     protected function getDefaultPriceMode(): string
     {
         if (!static::$defaultPriceModeCache) {
@@ -308,9 +288,6 @@ class PriceProductCriteriaBuilder implements PriceProductCriteriaBuilderInterfac
         return static::$defaultPriceModeCache;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\StoreTransfer
-     */
     protected function getCurrentStore(): StoreTransfer
     {
         if (!static::$currentStoreCache) {

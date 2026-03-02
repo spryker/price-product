@@ -24,9 +24,6 @@ class PriceProductToQuoteClientBridge implements PriceProductToQuoteClientInterf
         $this->quoteClient = $quoteClient;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function getQuote(): QuoteTransfer
     {
         return $this->quoteClient->getQuote();

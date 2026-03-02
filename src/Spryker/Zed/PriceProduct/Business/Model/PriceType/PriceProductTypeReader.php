@@ -34,11 +34,6 @@ class PriceProductTypeReader implements PriceProductTypeReaderInterface
      */
     protected static $priceTypeCache = [];
 
-    /**
-     * @param \Spryker\Zed\PriceProduct\Persistence\PriceProductQueryContainerInterface $priceProductQueryContainer
-     * @param \Spryker\Zed\PriceProduct\Business\Model\PriceType\ProductPriceTypeMapperInterface $productPriceTypeMapper
-     * @param \Spryker\Zed\PriceProduct\PriceProductConfig $priceProductConfig
-     */
     public function __construct(
         PriceProductQueryContainerInterface $priceProductQueryContainer,
         ProductPriceTypeMapperInterface $productPriceTypeMapper,
@@ -66,11 +61,6 @@ class PriceProductTypeReader implements PriceProductTypeReaderInterface
         return $priceTypes;
     }
 
-    /**
-     * @param string $priceTypeName
-     *
-     * @return \Generated\Shared\Transfer\PriceTypeTransfer|null
-     */
     public function findPriceTypeByName(string $priceTypeName): ?PriceTypeTransfer
     {
         if ($this->hasPriceType($priceTypeName) === false) {

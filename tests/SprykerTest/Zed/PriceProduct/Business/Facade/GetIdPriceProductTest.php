@@ -55,9 +55,6 @@ class GetIdPriceProductTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -68,9 +65,6 @@ class GetIdPriceProductTest extends Unit
         $container->set(static::SERVICE_LOCALE, static::DEFAULT_LOCALE);
     }
 
-    /**
-     * @return void
-     */
     public function testGetIdPriceProductShouldReturnIdOfPriceProductEntity(): void
     {
         // Arrange

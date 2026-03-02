@@ -38,9 +38,6 @@ class PriceProductCriteriaBuilderTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testBuildCriteriaFromFilterGetsCurrencyByStoreNameIfItIsProvided(): void
     {
         if ($this->tester->isDynamicStoreEnabled() === false) {
@@ -71,9 +68,6 @@ class PriceProductCriteriaBuilderTest extends Unit
         $this->assertSame($priceProductCriteriaTransfer->getIdCurrency(), $currencyId);
     }
 
-    /**
-     * @return void
-     */
     public function testBuildCriteriaFromFilterGetsDefaultCurrencyIfStoreNameIsNotProvided(): void
     {
         //Arrange
@@ -99,9 +93,6 @@ class PriceProductCriteriaBuilderTest extends Unit
         $this->assertSame($priceProductCriteriaTransfer->getIdCurrency(), $expectedCurrencyTransfer->getIdCurrency());
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Currency\CurrencyReaderInterface
-     */
     protected function createCurrencyReader(): CurrencyReaderInterface
     {
         return new CurrencyReaderWithCache(
@@ -119,9 +110,6 @@ class PriceProductCriteriaBuilderTest extends Unit
         return $this->createMock(PriceProductToPriceFacadeInterface::class);
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToStoreFacadeInterface
-     */
     protected function createStoreFacade(): PriceProductToStoreFacadeInterface
     {
         return new PriceProductToStoreFacadeBridge(

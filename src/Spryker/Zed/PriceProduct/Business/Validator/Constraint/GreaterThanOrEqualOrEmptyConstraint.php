@@ -16,9 +16,6 @@ class GreaterThanOrEqualOrEmptyConstraint extends AbstractComparison
      */
     public $message = 'This value should be equal or greater than {{ compared_value }} or empty.';
 
-    /**
-     * @return string
-     */
     public function getTargets(): string
     {
         return static::CLASS_CONSTRAINT;

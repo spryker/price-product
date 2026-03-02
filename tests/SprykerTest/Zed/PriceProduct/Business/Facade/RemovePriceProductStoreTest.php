@@ -29,9 +29,6 @@ class RemovePriceProductStoreTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testRemovePriceProductStoreShouldDeletePriceFromDatabase(): void
     {
         if ($this->tester->isDynamicStoreEnabled()) {

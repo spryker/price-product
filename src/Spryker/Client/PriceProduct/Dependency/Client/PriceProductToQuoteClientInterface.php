@@ -11,8 +11,5 @@ use Generated\Shared\Transfer\QuoteTransfer;
 
 interface PriceProductToQuoteClientInterface
 {
-    /**
-     * @return \Generated\Shared\Transfer\QuoteTransfer
-     */
     public function getQuote(): QuoteTransfer;
 }

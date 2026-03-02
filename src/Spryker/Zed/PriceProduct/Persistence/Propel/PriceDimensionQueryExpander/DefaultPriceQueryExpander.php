@@ -17,11 +17,6 @@ use Propel\Runtime\ActiveQuery\Criteria;
 
 class DefaultPriceQueryExpander implements DefaultPriceQueryExpanderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\QueryCriteriaTransfer|null
-     */
     public function buildDefaultPriceDimensionQueryCriteria(
         PriceProductCriteriaTransfer $priceProductCriteriaTransfer
     ): ?QueryCriteriaTransfer {
@@ -34,9 +29,6 @@ class DefaultPriceQueryExpander implements DefaultPriceQueryExpanderInterface
             ]);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\QueryJoinTransfer
-     */
     protected function createJoin(): QueryJoinTransfer
     {
         return (new QueryJoinTransfer())

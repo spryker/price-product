@@ -13,12 +13,6 @@ class GreaterThanOrEqualOrEmptyConstraintValidator extends AbstractComparisonVal
 {
     use GreaterThanOrEqualOrEmptyConstraintValidatorTrait;
 
-    /**
-     * @param mixed $value1
-     * @param mixed $value2
-     *
-     * @return bool
-     */
     protected function executeCompareValues(mixed $value1, mixed $value2): bool
     {
         return $value1 === null || $value1 >= $value2;

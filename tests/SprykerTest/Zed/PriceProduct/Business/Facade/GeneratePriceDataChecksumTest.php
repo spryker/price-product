@@ -28,9 +28,6 @@ class GeneratePriceDataChecksumTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testGeneratePriceDataChecksum(): void
     {
         // Act

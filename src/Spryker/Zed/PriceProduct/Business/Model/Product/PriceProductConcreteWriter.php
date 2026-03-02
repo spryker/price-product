@@ -93,11 +93,6 @@ class PriceProductConcreteWriter extends BaseProductPriceWriter implements Price
         $this->eventFacade = $eventFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductConcreteTransfer $productConcreteTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductConcreteTransfer
-     */
     public function persistProductConcretePriceCollection(
         ProductConcreteTransfer $productConcreteTransfer
     ): ProductConcreteTransfer {
@@ -106,11 +101,6 @@ class PriceProductConcreteWriter extends BaseProductPriceWriter implements Price
         });
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductConcreteTransfer $productConcreteTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductConcreteTransfer
-     */
     protected function executePersistProductConcretePriceCollectionTransaction(
         ProductConcreteTransfer $productConcreteTransfer
     ): ProductConcreteTransfer {
@@ -129,12 +119,6 @@ class PriceProductConcreteWriter extends BaseProductPriceWriter implements Price
         return $productConcreteTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductConcreteTransfer $productConcreteTransfer
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function executePersistProductConcretePrice(
         ProductConcreteTransfer $productConcreteTransfer,
         PriceProductTransfer $priceProductTransfer
@@ -160,11 +144,6 @@ class PriceProductConcreteWriter extends BaseProductPriceWriter implements Price
         return $priceProductTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function executePriceDimensionConcreteSaverPlugins(
         PriceProductTransfer $priceProductTransfer
     ): PriceProductTransfer {
@@ -196,12 +175,6 @@ class PriceProductConcreteWriter extends BaseProductPriceWriter implements Price
         return $priceProductTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     * @param int $idProductConcrete
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function persistProductConcretePriceEntity(
         PriceProductTransfer $priceProductTransfer,
         int $idProductConcrete
@@ -225,11 +198,6 @@ class PriceProductConcreteWriter extends BaseProductPriceWriter implements Price
         return $priceProductTransfer;
     }
 
-    /**
-     * @param int $idProductConcrete
-     *
-     * @return void
-     */
     protected function triggerProductUpdateEvent(int $idProductConcrete): void
     {
         $productUpdatedEvent = (new EventEntityTransfer())->setId($idProductConcrete);

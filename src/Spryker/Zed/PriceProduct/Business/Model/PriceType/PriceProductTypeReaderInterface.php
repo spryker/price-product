@@ -39,10 +39,5 @@ interface PriceProductTypeReaderInterface
      */
     public function hasPriceType($priceTypeName);
 
-    /**
-     * @param string $priceTypeName
-     *
-     * @return \Generated\Shared\Transfer\PriceTypeTransfer|null
-     */
     public function findPriceTypeByName(string $priceTypeName): ?PriceTypeTransfer;
 }

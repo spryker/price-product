@@ -31,9 +31,6 @@ class FindProductAbstractPriceTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testFindProductAbstractPriceShouldReturnDefaultPriceForAbstractProduct(): void
     {
         if ($this->tester->isDynamicStoreEnabled()) {

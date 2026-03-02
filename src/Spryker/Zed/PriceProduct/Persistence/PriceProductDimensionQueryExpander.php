@@ -51,13 +51,6 @@ class PriceProductDimensionQueryExpander implements PriceProductDimensionQueryEx
         return $priceProductStoreQuery;
     }
 
-    /**
-     * @param \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStoreQuery $priceProductStoreQuery
-     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
-     * @param string $dimensionName
-     *
-     * @return \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStoreQuery|null
-     */
     public function expandPriceProductStoreQueryWithPriceDimensionByDimensionName(
         SpyPriceProductStoreQuery $priceProductStoreQuery,
         PriceProductCriteriaTransfer $priceProductCriteriaTransfer,
@@ -147,11 +140,6 @@ class PriceProductDimensionQueryExpander implements PriceProductDimensionQueryEx
         $this->filterEmptyDimensions($priceProductStoreQuery, $priceDimensionQueryCriteriaTransfer);
     }
 
-    /**
-     * @param string $priceDimensionName
-     *
-     * @return \Spryker\Zed\PriceProductExtension\Dependency\Plugin\PriceDimensionQueryCriteriaPluginInterface|null
-     */
     protected function findPriceDimensionCriteriaPluginByName(string $priceDimensionName): ?PriceDimensionQueryCriteriaPluginInterface
     {
         foreach ($this->priceDimensionQueryCriteriaPlugins as $priceDimensionQueryCriteriaPlugin) {

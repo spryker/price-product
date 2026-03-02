@@ -9,10 +9,5 @@ namespace Spryker\Zed\PriceProduct\Business\Model\PriceData;
 
 interface PriceDataChecksumGeneratorInterface
 {
-    /**
-     * @param array $priceData
-     *
-     * @return string
-     */
     public function generatePriceDataChecksum(array $priceData): string;
 }

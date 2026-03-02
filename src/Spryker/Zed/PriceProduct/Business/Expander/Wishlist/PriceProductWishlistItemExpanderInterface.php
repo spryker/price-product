@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\WishlistItemTransfer;
 
 interface PriceProductWishlistItemExpanderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\WishlistItemTransfer $wishlistItemTransfer
-     *
-     * @return \Generated\Shared\Transfer\WishlistItemTransfer
-     */
     public function expandWishlistItem(WishlistItemTransfer $wishlistItemTransfer): WishlistItemTransfer;
 }

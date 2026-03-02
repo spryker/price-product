@@ -25,11 +25,6 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
      */
     public const PLUGIN_PRE_BUILD_PRICE_PRODUCT_GROUP_KEY = 'PLUGIN_PRE_BUILD_PRICE_PRODUCT_GROUP_KEY';
 
-    /**
-     * @param \Spryker\Service\Kernel\Container $container
-     *
-     * @return \Spryker\Service\Kernel\Container
-     */
     public function provideServiceDependencies(Container $container): Container
     {
         $container = $this->addPriceProductDecisionPlugins($container);
@@ -38,11 +33,6 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Service\Kernel\Container $container
-     *
-     * @return \Spryker\Service\Kernel\Container
-     */
     protected function addPriceProductDecisionPlugins(Container $container): Container
     {
         $container->set(static::PLUGIN_PRICE_PRODUCT_DECISION, function () {
@@ -52,11 +42,6 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Service\Kernel\Container $container
-     *
-     * @return \Spryker\Service\Kernel\Container
-     */
     protected function addPreBuildPriceProductGroupKeyPlugins(Container $container): Container
     {
         $container->set(static::PLUGIN_PRE_BUILD_PRICE_PRODUCT_GROUP_KEY, function (Container $container) {

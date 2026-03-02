@@ -28,10 +28,6 @@ class PriceProductDefaultRemover implements PriceProductDefaultRemoverInterface
      */
     protected $priceProductRepository;
 
-    /**
-     * @param \Spryker\Zed\PriceProduct\Persistence\PriceProductEntityManagerInterface $priceProductEntityManager
-     * @param \Spryker\Zed\PriceProduct\Persistence\PriceProductRepositoryInterface $priceProductRepository
-     */
     public function __construct(
         PriceProductEntityManagerInterface $priceProductEntityManager,
         PriceProductRepositoryInterface $priceProductRepository
@@ -40,11 +36,6 @@ class PriceProductDefaultRemover implements PriceProductDefaultRemoverInterface
         $this->priceProductRepository = $priceProductRepository;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return void
-     */
     public function removePriceProductDefaultsForPriceProduct(PriceProductTransfer $priceProductTransfer): void
     {
         $priceProductTransfer
@@ -56,11 +47,6 @@ class PriceProductDefaultRemover implements PriceProductDefaultRemoverInterface
         });
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return void
-     */
     protected function executeRemovePriceProductDefaultsForPriceProductTransaction(
         PriceProductTransfer $priceProductTransfer
     ): void {

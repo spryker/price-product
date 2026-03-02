@@ -66,17 +66,6 @@ class PriceProductAbstractReader implements PriceProductAbstractReaderInterface
      */
     protected $pluginExecutor;
 
-    /**
-     * @param \Spryker\Zed\PriceProduct\Persistence\PriceProductQueryContainerInterface $priceProductQueryContainer
-     * @param \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductMapperInterface $priceProductMapper
-     * @param \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToProductFacadeInterface $productFacade
-     * @param \Spryker\Zed\PriceProduct\Business\Model\PriceProductCriteriaBuilderInterface $priceProductCriteriaBuilder
-     * @param \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToStoreFacadeInterface $storeFacade
-     * @param \Spryker\Zed\PriceProduct\Persistence\PriceProductRepositoryInterface $priceProductRepository
-     * @param \Spryker\Service\PriceProduct\PriceProductServiceInterface $priceProductService
-     * @param \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductExpanderInterface $priceProductExpander
-     * @param \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductReader\PriceProductReaderPluginExecutorInterface $pluginExecutor
-     */
     public function __construct(
         PriceProductQueryContainerInterface $priceProductQueryContainer,
         PriceProductMapperInterface $priceProductMapper,
@@ -152,12 +141,6 @@ class PriceProductAbstractReader implements PriceProductAbstractReaderInterface
         return $abstractSku;
     }
 
-    /**
-     * @param string $sku
-     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer|null
-     */
     public function findPriceForProductAbstract(string $sku, PriceProductCriteriaTransfer $priceProductCriteriaTransfer): ?PriceProductTransfer
     {
         $priceProductTransfers = $this->findProductAbstractPricesBySkuAndCriteria($sku, $priceProductCriteriaTransfer);
@@ -304,11 +287,6 @@ class PriceProductAbstractReader implements PriceProductAbstractReaderInterface
         return $priceProductTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return int|null
-     */
     public function findIdProductAbstractForPriceProduct(PriceProductTransfer $priceProductTransfer): ?int
     {
         if ($priceProductTransfer->getIdProduct()) {

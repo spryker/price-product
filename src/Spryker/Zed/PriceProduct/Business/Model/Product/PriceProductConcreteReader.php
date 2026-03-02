@@ -150,12 +150,6 @@ class PriceProductConcreteReader implements PriceProductConcreteReaderInterface
         return $priceProductTransfers;
     }
 
-    /**
-     * @param string $sku
-     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer|null
-     */
     public function findPriceForProductConcrete(string $sku, PriceProductCriteriaTransfer $priceProductCriteriaTransfer): ?PriceProductTransfer
     {
         $priceProductTransfers = $this->findProductConcretePricesBySkuAndCriteria($sku, $priceProductCriteriaTransfer);
@@ -188,12 +182,6 @@ class PriceProductConcreteReader implements PriceProductConcreteReaderInterface
         return $priceProductTransfers;
     }
 
-    /**
-     * @param string $sku
-     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
-     *
-     * @return string
-     */
     protected function generateCacheKey(string $sku, PriceProductCriteriaTransfer $priceProductCriteriaTransfer): string
     {
         $criteriaData = [
@@ -269,11 +257,6 @@ class PriceProductConcreteReader implements PriceProductConcreteReaderInterface
         return $priceProductTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductConcreteTransfer $productConcreteTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductConcreteTransfer
-     */
     public function expandProductConcreteWithPrices(ProductConcreteTransfer $productConcreteTransfer): ProductConcreteTransfer
     {
         /** @phpstan-var non-empty-array<\Generated\Shared\Transfer\ProductConcreteTransfer> $productConcreteTransfersWithPrices */

@@ -30,9 +30,6 @@ class HasValidPriceTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testHasValidPriceShouldReturnTrueWhenProductHavePrices(): void
     {
         if ($this->tester->isDynamicStoreEnabled()) {
@@ -49,9 +46,6 @@ class HasValidPriceTest extends Unit
         $this->assertTrue($result);
     }
 
-    /**
-     * @return void
-     */
     public function testHasValidPriceForReturnTrueWhenProductHavePrices(): void
     {
         /*

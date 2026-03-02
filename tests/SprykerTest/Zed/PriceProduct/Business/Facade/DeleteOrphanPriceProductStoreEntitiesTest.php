@@ -30,9 +30,6 @@ class DeleteOrphanPriceProductStoreEntitiesTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testDeleteOrphanPriceProductStoreEntitiesNotFails(): void
     {
         // Arrange

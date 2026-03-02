@@ -28,9 +28,6 @@ class InstallTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testInstallNotFails(): void
     {
         // Act

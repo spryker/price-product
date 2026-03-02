@@ -22,10 +22,6 @@ class Install implements InstallInterface
      */
     protected $config;
 
-    /**
-     * @param \Spryker\Zed\PriceProduct\Business\Model\PriceType\PriceTypeWriterInterface $priceTypeWriter
-     * @param \Spryker\Zed\PriceProduct\PriceProductConfig $config
-     */
     public function __construct(
         PriceTypeWriterInterface $priceTypeWriter,
         PriceProductConfig $config

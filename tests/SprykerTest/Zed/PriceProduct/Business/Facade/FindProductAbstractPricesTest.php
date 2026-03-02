@@ -31,9 +31,6 @@ class FindProductAbstractPricesTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testFindProductAbstractPricesShouldReturnPriceAssignedToAbstractProduct(): void
     {
         // Arrange

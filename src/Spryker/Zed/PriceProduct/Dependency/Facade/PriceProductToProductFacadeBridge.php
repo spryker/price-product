@@ -84,11 +84,6 @@ class PriceProductToProductFacadeBridge implements PriceProductToProductFacadeIn
         return $this->productFacade->getProductAbstractIdByConcreteSku($concreteSku);
     }
 
-    /**
-     * @param int $idProductConcrete
-     *
-     * @return int
-     */
     public function getProductAbstractIdByConcreteId(int $idProductConcrete): int
     {
         return $this->productFacade->getProductAbstractIdByConcreteId($idProductConcrete);

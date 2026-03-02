@@ -28,9 +28,6 @@ class FindPriceTypeByNameTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testFindPriceTypeByName(): void
     {
         // Arrange

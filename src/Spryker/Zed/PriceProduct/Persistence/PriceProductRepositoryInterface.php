@@ -77,18 +77,10 @@ interface PriceProductRepositoryInterface
      */
     public function findProductAbstractPricesByIdIn(array $productAbstractIds): array;
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\QueryCriteriaTransfer|null
-     */
     public function buildDefaultPriceDimensionQueryCriteria(
         PriceProductCriteriaTransfer $priceProductCriteriaTransfer
     ): ?QueryCriteriaTransfer;
 
-    /**
-     * @return \Generated\Shared\Transfer\QueryCriteriaTransfer
-     */
     public function buildUnconditionalDefaultPriceDimensionQueryCriteria(): QueryCriteriaTransfer;
 
     /**
@@ -98,25 +90,10 @@ interface PriceProductRepositoryInterface
      */
     public function findPriceProductTransfersWithOrphanPriceProductStore(PriceProductCriteriaTransfer $priceProductCriteriaTransfer): array;
 
-    /**
-     * @param int $idPriceProductStore
-     *
-     * @return \Generated\Shared\Transfer\SpyPriceProductDefaultEntityTransfer|null
-     */
     public function findPriceProductDefaultByIdPriceProductStore(int $idPriceProductStore): ?SpyPriceProductDefaultEntityTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return int|null
-     */
     public function findIdPriceProductForProductConcrete(PriceProductTransfer $priceProductTransfer): ?int;
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return int|null
-     */
     public function findIdPriceProductForProductAbstract(PriceProductTransfer $priceProductTransfer): ?int;
 
     /**
@@ -130,18 +107,8 @@ interface PriceProductRepositoryInterface
         ?PriceProductCriteriaTransfer $priceProductCriteriaTransfer = null
     ): array;
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return int|null
-     */
     public function findIdPriceProductStoreByPriceProduct(PriceProductTransfer $priceProductTransfer): ?int;
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return bool
-     */
     public function isPriceProductUsedForOtherCurrencyAndStore(PriceProductTransfer $priceProductTransfer): bool;
 
     /**
@@ -173,11 +140,6 @@ interface PriceProductRepositoryInterface
         PriceProductCriteriaTransfer $priceProductCriteriaTransfer
     ): array;
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return bool
-     */
     public function isPriceProductByProductIdentifierAndPriceTypeExists(
         PriceProductTransfer $priceProductTransfer
     ): bool;

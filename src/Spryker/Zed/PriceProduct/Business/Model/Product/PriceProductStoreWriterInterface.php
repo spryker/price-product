@@ -11,22 +11,9 @@ use Generated\Shared\Transfer\PriceProductTransfer;
 
 interface PriceProductStoreWriterInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     public function persistPriceProductStore(PriceProductTransfer $priceProductTransfer): PriceProductTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return void
-     */
     public function deleteOrphanPriceProductStoreEntities(PriceProductTransfer $priceProductTransfer): void;
 
-    /**
-     * @return void
-     */
     public function deleteAllOrphanPriceProductStoreEntities(): void;
 }

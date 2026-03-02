@@ -220,11 +220,6 @@ class ProductPriceResolver implements ProductPriceResolverInterface
             ->setPriceDimension($priceProductTransfer->getPriceDimension());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductFilterTransfer|null $priceProductFilterTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductFilterTransfer
-     */
     protected function buildPriceProductFilterWithCurrentValues(
         ?PriceProductFilterTransfer $priceProductFilterTransfer = null
     ): PriceProductFilterTransfer {
@@ -253,9 +248,6 @@ class ProductPriceResolver implements ProductPriceResolverInterface
         return $builtPriceProductFilterTransfer;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\CurrencyTransfer
-     */
     protected function getCurrencyTransfer(): CurrencyTransfer
     {
         if (static::$currencyTransfer === null) {
@@ -265,9 +257,6 @@ class ProductPriceResolver implements ProductPriceResolverInterface
         return static::$currencyTransfer;
     }
 
-    /**
-     * @return string
-     */
     protected function getCurrentPriceMode(): string
     {
         if (static::$currentPriceMode === null) {
@@ -330,12 +319,6 @@ class ProductPriceResolver implements ProductPriceResolverInterface
         return $priceProductTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MoneyValueTransfer $moneyValueTransfer
-     * @param string $priceMode
-     *
-     * @return int|null
-     */
     protected function getPriceValueByPriceMode(MoneyValueTransfer $moneyValueTransfer, string $priceMode): ?int
     {
         if ($priceMode === $this->priceProductConfig->getPriceModeIdentifierForNetType()) {
@@ -360,12 +343,6 @@ class ProductPriceResolver implements ProductPriceResolverInterface
         return $moneyValueTransfer->getPriceDataByPriceType();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     * @param \Generated\Shared\Transfer\PriceProductFilterTransfer $priceProductFilterTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function executePriceProductPostResolvePlugins(
         PriceProductTransfer $priceProductTransfer,
         PriceProductFilterTransfer $priceProductFilterTransfer

@@ -31,9 +31,6 @@ class PersistProductAbstractPriceCollectionTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testPersistProductAbstractPriceCollectionShouldSavePriceCollection(): void
     {
         // Arrange

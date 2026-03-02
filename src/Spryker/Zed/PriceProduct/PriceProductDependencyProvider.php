@@ -160,11 +160,6 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addEventFacade(Container $container): Container
     {
         $container->set(static::FACADE_EVENT, function (Container $container) {
@@ -244,11 +239,6 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPriceDimensionQueryCriteriaPlugins(Container $container): Container
     {
         $container->set(static::PLUGIN_PRICE_DIMENSION_QUERY_CRITERIA, function (Container $container) {
@@ -258,11 +248,6 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPriceDimensionAbstractSaverPlugins(Container $container): Container
     {
         $container->set(static::PLUGIN_PRICE_DIMENSION_ABSTRACT_SAVER, function (Container $container) {
@@ -272,11 +257,6 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPriceDimensionConcreteSaverPlugins(Container $container): Container
     {
         $container->set(static::PLUGIN_PRICE_DIMENSION_CONCRETE_SAVER, function (Container $container) {
@@ -286,11 +266,6 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPriceProductDimensionExpanderStrategyPlugins(Container $container): Container
     {
         $container->set(static::PLUGIN_PRICE_PRODUCT_DIMENSION_TRANSFER_EXPANDER, function (Container $container) {
@@ -300,11 +275,6 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPriceProductPricesExtractorPlugins(Container $container): Container
     {
         $container->set(static::PLUGIN_PRICE_PRODUCT_PRICES_EXTRACTOR, function (Container $container) {
@@ -314,11 +284,6 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPriceProductStorePreDeletePlugins(Container $container): Container
     {
         $container->set(static::PLUGIN_PRICE_PRODUCT_STORE_PRE_DELETE, function () {
@@ -344,11 +309,6 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addOrphanPriceProductStoreRemovalVoterPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_ORPHAN_PRICE_PRODUCT_STORE_REMOVAL_VOTER, function () {
@@ -358,11 +318,6 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addUtilEncodingService(Container $container): Container
     {
         $container->set(static::SERVICE_UTIL_ENCODING, function (Container $container) {
@@ -440,11 +395,6 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
         return [];
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPriceProductService(Container $container): Container
     {
         $container->set(static::SERVICE_PRICE_PRODUCT, function (Container $container) {
@@ -454,11 +404,6 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addValidationAdapter(Container $container): Container
     {
         $container->set(static::EXTERNAL_ADAPTER_VALIDATION, function () {
@@ -468,11 +413,6 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPriceProductValidatorPlugins(Container $container): Container
     {
         $container->set(static::PLUGIN_PRICE_PRODUCT_VALIDATOR, function () {
@@ -482,11 +422,6 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     protected function addPriceProductCollectionDeletePlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_PRICE_PRODUCT_COLLECTION_DELETE, function () {

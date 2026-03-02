@@ -34,33 +34,21 @@ class PriceProductFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Service\PriceProduct\PriceProductServiceInterface
-     */
     public function getPriceProductService(): PriceProductServiceInterface
     {
         return $this->getProvidedDependency(PriceProductDependencyProvider::SERVICE_PRICE_PRODUCT);
     }
 
-    /**
-     * @return \Spryker\Client\PriceProduct\Dependency\Client\PriceProductToPriceClientInterface
-     */
     public function getPriceClient(): PriceProductToPriceClientInterface
     {
         return $this->getProvidedDependency(PriceProductDependencyProvider::CLIENT_PRICE);
     }
 
-    /**
-     * @return \Spryker\Client\PriceProduct\Dependency\Client\PriceProductToCurrencyClientInterface
-     */
     public function getCurrencyClient(): PriceProductToCurrencyClientInterface
     {
         return $this->getProvidedDependency(PriceProductDependencyProvider::CLIENT_CURRENCY);
     }
 
-    /**
-     * @return \Spryker\Client\PriceProduct\Dependency\Client\PriceProductToQuoteClientInterface
-     */
     public function getQuoteClient(): PriceProductToQuoteClientInterface
     {
         return $this->getProvidedDependency(PriceProductDependencyProvider::CLIENT_QUOTE);

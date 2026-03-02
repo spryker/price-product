@@ -63,25 +63,16 @@ class TransferConstraint extends Composite
         return [static::FIELDS];
     }
 
-    /**
-     * @return string
-     */
     public function getTargets(): string
     {
         return static::CLASS_CONSTRAINT;
     }
 
-    /**
-     * @return string
-     */
     public function getMissingFieldsMessage(): string
     {
         return static::MISSING_FIELD_MESSAGE;
     }
 
-    /**
-     * @return string
-     */
     protected function getCompositeOption(): string
     {
         return static::FIELDS;

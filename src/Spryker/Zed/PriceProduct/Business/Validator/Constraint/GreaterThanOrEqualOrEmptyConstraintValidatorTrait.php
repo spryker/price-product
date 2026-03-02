@@ -32,12 +32,6 @@ if (trait_exists('\Symfony\Component\Validator\Constraints\NumberConstraintTrait
     {
         use GreaterThanOrEqualOrEmptyConstraintValidatorTraitCommon;
 
-        /**
-         * @param mixed $value1
-         * @param mixed $value2
-         *
-         * @return bool
-         */
         protected function compareValues(mixed $value1, mixed $value2): bool
         {
             return $this->executeCompareValues($value1, $value2);

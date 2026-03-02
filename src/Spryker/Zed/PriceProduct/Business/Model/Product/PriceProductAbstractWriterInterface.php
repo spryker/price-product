@@ -11,11 +11,6 @@ use Generated\Shared\Transfer\ProductAbstractTransfer;
 
 interface PriceProductAbstractWriterInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductAbstractTransfer
-     */
     public function persistProductAbstractPriceCollection(
         ProductAbstractTransfer $productAbstractTransfer
     ): ProductAbstractTransfer;

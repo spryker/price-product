@@ -35,11 +35,6 @@ class PriceProductDeleter implements PriceProductDeleterInterface
         $this->priceProductCollectionDeletePlugins = $priceProductCollectionDeletePlugins;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductCollectionDeleteCriteriaTransfer $priceProductCollectionDeleteCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductCollectionResponseTransfer
-     */
     public function deletePriceProductCollection(
         PriceProductCollectionDeleteCriteriaTransfer $priceProductCollectionDeleteCriteriaTransfer
     ): PriceProductCollectionResponseTransfer {
@@ -54,11 +49,6 @@ class PriceProductDeleter implements PriceProductDeleterInterface
         return $priceProductCollectionResponseTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductCollectionDeleteCriteriaTransfer $priceProductCollectionDeleteCriteriaTransfer
-     *
-     * @return void
-     */
     protected function executePriceProductCollectionDeletePlugins(
         PriceProductCollectionDeleteCriteriaTransfer $priceProductCollectionDeleteCriteriaTransfer
     ): void {

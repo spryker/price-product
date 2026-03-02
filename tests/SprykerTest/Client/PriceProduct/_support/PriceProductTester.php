@@ -30,9 +30,6 @@ class PriceProductTester extends Actor
 {
     use _generated\PriceProductTesterActions;
 
-    /**
-     * @return \Spryker\Client\PriceProduct\PriceProductClientInterface
-     */
     public function getClient(): PriceProductClientInterface
     {
         return $this->getLocator()->priceProduct()->client();

@@ -32,11 +32,6 @@ class PriceProductWishlistItemExpander implements PriceProductWishlistItemExpand
      */
     protected $storeFacade;
 
-    /**
-     * @param \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductConcreteReaderInterface $priceProductConcreteReader
-     * @param \Spryker\Zed\PriceProduct\PriceProductConfig $priceProductConfig
-     * @param \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToStoreFacadeInterface $storeFacade
-     */
     public function __construct(
         PriceProductConcreteReaderInterface $priceProductConcreteReader,
         PriceProductConfig $priceProductConfig,
@@ -47,11 +42,6 @@ class PriceProductWishlistItemExpander implements PriceProductWishlistItemExpand
         $this->storeFacade = $storeFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\WishlistItemTransfer $wishlistItemTransfer
-     *
-     * @return \Generated\Shared\Transfer\WishlistItemTransfer
-     */
     public function expandWishlistItem(WishlistItemTransfer $wishlistItemTransfer): WishlistItemTransfer
     {
         $priceProductCriteriaTransfer = (new PriceProductCriteriaTransfer())

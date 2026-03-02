@@ -27,17 +27,11 @@ class CurrencyReaderWithCache implements CurrencyReaderInterface
      */
     protected static $defaultCurrency;
 
-    /**
-     * @param \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToCurrencyFacadeInterface $currencyFacade
-     */
     public function __construct(PriceProductToCurrencyFacadeInterface $currencyFacade)
     {
         $this->currencyFacade = $currencyFacade;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\CurrencyTransfer
-     */
     public function getDefaultCurrencyTransfer(): CurrencyTransfer
     {
         if (static::$defaultCurrency === null) {
@@ -47,11 +41,6 @@ class CurrencyReaderWithCache implements CurrencyReaderInterface
         return static::$defaultCurrency;
     }
 
-    /**
-     * @param string $isoCode
-     *
-     * @return \Generated\Shared\Transfer\CurrencyTransfer
-     */
     public function getCurrencyTransferFromIsoCode(string $isoCode): CurrencyTransfer
     {
         if (!isset(static::$currencyCache[$isoCode])) {

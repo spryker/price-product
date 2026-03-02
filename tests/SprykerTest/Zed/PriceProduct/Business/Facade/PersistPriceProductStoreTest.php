@@ -62,9 +62,6 @@ class PersistPriceProductStoreTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testPersistPriceProductStore(): void
     {
         // Arrange
@@ -137,12 +134,6 @@ class PersistPriceProductStoreTest extends Unit
         ];
     }
 
-    /**
-     * @param bool $controlRemovalByPluginStack
-     * @param bool $orphanStorePricesRemovalEnabled
-     *
-     * @return \Spryker\Zed\PriceProduct\Business\PriceProductFacadeInterface
-     */
     protected function setupFacadeForOrphanPriceProductStoreRemovalTest(
         bool $controlRemovalByPluginStack,
         bool $orphanStorePricesRemovalEnabled
@@ -154,11 +145,6 @@ class PersistPriceProductStoreTest extends Unit
         return $this->setupFacadeForOrphanPriceProductStoreRemovalTestWithControlByConfig($orphanStorePricesRemovalEnabled);
     }
 
-    /**
-     * @param bool $orphanStorePricesRemovalEnabled
-     *
-     * @return \Spryker\Zed\PriceProduct\Business\PriceProductFacadeInterface
-     */
     protected function setupFacadeForOrphanPriceProductStoreRemovalTestWithControlByPluginStack(
         bool $orphanStorePricesRemovalEnabled
     ): PriceProductFacadeInterface {
@@ -177,11 +163,6 @@ class PersistPriceProductStoreTest extends Unit
         return $this->getPriceProductFacade();
     }
 
-    /**
-     * @param bool $orphanStorePricesRemovalEnabled
-     *
-     * @return \Spryker\Zed\PriceProduct\Business\PriceProductFacadeInterface
-     */
     protected function setupFacadeForOrphanPriceProductStoreRemovalTestWithControlByConfig(
         bool $orphanStorePricesRemovalEnabled
     ): PriceProductFacadeInterface {
@@ -195,9 +176,6 @@ class PersistPriceProductStoreTest extends Unit
             ->setFactory($priceProductBusinessFactory);
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\PriceProductFacadeInterface
-     */
     protected function getPriceProductFacade(): PriceProductFacadeInterface
     {
         return new PriceProductFacade();

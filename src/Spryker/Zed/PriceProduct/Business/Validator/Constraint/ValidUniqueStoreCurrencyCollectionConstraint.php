@@ -33,25 +33,16 @@ class ValidUniqueStoreCurrencyCollectionConstraint extends SymfonyConstraint
         parent::__construct($options);
     }
 
-    /**
-     * @return string
-     */
     public function getMessage(): string
     {
         return static::MESSAGE;
     }
 
-    /**
-     * @return string
-     */
     public function getTargets(): string
     {
         return static::CLASS_CONSTRAINT;
     }
 
-    /**
-     * @return \Spryker\Service\PriceProduct\PriceProductServiceInterface
-     */
     public function getPriceProductService(): PriceProductServiceInterface
     {
         return $this->priceProductService;

@@ -28,9 +28,6 @@ class CreatePriceTypeTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testCreatePriceType(): void
     {
         // Act

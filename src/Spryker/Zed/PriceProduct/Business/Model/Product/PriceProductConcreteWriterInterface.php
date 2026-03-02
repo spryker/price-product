@@ -11,11 +11,6 @@ use Generated\Shared\Transfer\ProductConcreteTransfer;
 
 interface PriceProductConcreteWriterInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ProductConcreteTransfer $productConcreteTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductConcreteTransfer
-     */
     public function persistProductConcretePriceCollection(
         ProductConcreteTransfer $productConcreteTransfer
     ): ProductConcreteTransfer;

@@ -30,9 +30,6 @@ class FindProductConcretePricesTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testFindProductConcretePricesShouldReturnPriceAssignedToConcreteProduct(): void
     {
         // Arrange

@@ -24,10 +24,6 @@ class PriceProductDefaultWriter implements PriceProductDefaultWriterInterface
      */
     protected $priceProductEntityManager;
 
-    /**
-     * @param \Spryker\Zed\PriceProduct\Persistence\PriceProductRepositoryInterface $priceProductRepository
-     * @param \Spryker\Zed\PriceProduct\Persistence\PriceProductEntityManagerInterface $priceProductEntityManager
-     */
     public function __construct(
         PriceProductRepositoryInterface $priceProductRepository,
         PriceProductEntityManagerInterface $priceProductEntityManager
@@ -36,11 +32,6 @@ class PriceProductDefaultWriter implements PriceProductDefaultWriterInterface
         $this->priceProductEntityManager = $priceProductEntityManager;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\SpyPriceProductDefaultEntityTransfer
-     */
     public function persistPriceProductDefault(PriceProductTransfer $priceProductTransfer): SpyPriceProductDefaultEntityTransfer
     {
         /** @var \Generated\Shared\Transfer\MoneyValueTransfer $moneyValueTransfer */

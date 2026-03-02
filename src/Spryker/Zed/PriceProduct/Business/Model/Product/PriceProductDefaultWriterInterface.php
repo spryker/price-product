@@ -12,10 +12,5 @@ use Generated\Shared\Transfer\SpyPriceProductDefaultEntityTransfer;
 
 interface PriceProductDefaultWriterInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\SpyPriceProductDefaultEntityTransfer
-     */
     public function persistPriceProductDefault(PriceProductTransfer $priceProductTransfer): SpyPriceProductDefaultEntityTransfer;
 }

@@ -12,11 +12,6 @@ use Generated\Shared\Transfer\PriceProductFilterTransfer;
 
 interface PriceProductCriteriaBuilderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductFilterTransfer $priceProductFilterTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductCriteriaTransfer
-     */
     public function buildCriteriaFromFilter(PriceProductFilterTransfer $priceProductFilterTransfer): PriceProductCriteriaTransfer;
 
     /**

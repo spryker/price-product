@@ -28,9 +28,6 @@ class ExpandProductConcreteTransfersWithPricesTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testExpandProductConcreteTransfersWithPricesSuccessful(): void
     {
         // Arrange

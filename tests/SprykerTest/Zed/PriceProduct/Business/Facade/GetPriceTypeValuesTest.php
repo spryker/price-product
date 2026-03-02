@@ -28,9 +28,6 @@ class GetPriceTypeValuesTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testGetPriceTypeValuesShouldReturnListOfAllPersistedPriceTypes(): void
     {
         // Arrange

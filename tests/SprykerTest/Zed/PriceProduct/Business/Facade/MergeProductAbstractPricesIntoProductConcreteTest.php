@@ -31,9 +31,6 @@ class MergeProductAbstractPricesIntoProductConcreteTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testMergeProductAbstractPricesIntoProductConcreteTakenFromProductAbstractIfEmpty(): void
     {
         // Arrange
@@ -60,9 +57,6 @@ class MergeProductAbstractPricesIntoProductConcreteTest extends Unit
         $this->assertEquals($productAbstractPrice, $productConcreteResult->getPrices()[0]->toArray());
     }
 
-    /**
-     * @return void
-     */
     public function testMergeProductAbstractPricesIntoProductConcretePricesNoTakenFromProductAbstractIfExist(): void
     {
         // Arrange

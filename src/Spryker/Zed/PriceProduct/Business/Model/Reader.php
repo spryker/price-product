@@ -50,18 +50,6 @@ class Reader implements ReaderInterface
      */
     protected const FIELD_PRICE_PAIR_CONCRETES = 'concretes';
 
-    /**
-     * @param \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToProductFacadeInterface $productFacade
-     * @param \Spryker\Zed\PriceProduct\Business\Model\PriceType\PriceProductTypeReaderInterface $priceProductTypeReader
-     * @param \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductConcreteReaderInterface $priceProductConcreteReader
-     * @param \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductAbstractReaderInterface $priceProductAbstractReader
-     * @param \Spryker\Zed\PriceProduct\Business\Model\PriceProductCriteriaBuilderInterface $priceProductCriteriaBuilder
-     * @param \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductMapperInterface $priceProductMapper
-     * @param \Spryker\Zed\PriceProduct\PriceProductConfig $config
-     * @param \Spryker\Service\PriceProduct\PriceProductServiceInterface $priceProductService
-     * @param \Spryker\Zed\PriceProduct\Persistence\PriceProductRepositoryInterface $priceProductRepository
-     * @param \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductExpanderInterface $priceProductExpander
-     */
     public function __construct(
         protected PriceProductToProductFacadeInterface $productFacade,
         protected PriceProductTypeReaderInterface $priceProductTypeReader,
@@ -123,11 +111,6 @@ class Reader implements ReaderInterface
         return $this->getPriceByPriceMode($moneyValueTransfer, $priceMode);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductFilterTransfer $priceProductFilterTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer|null
-     */
     public function findPriceProductFor(PriceProductFilterTransfer $priceProductFilterTransfer): ?PriceProductTransfer
     {
         $priceProductFilterTransfer->requireSku();
@@ -383,12 +366,6 @@ class Reader implements ReaderInterface
         return $priceProductConcreteTransfer;
     }
 
-    /**
-     * @param string $sku
-     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer|null
-     */
     protected function findProductPrice(string $sku, PriceProductCriteriaTransfer $priceProductCriteriaTransfer): ?PriceProductTransfer
     {
         $priceProductConcreteTransfers = $this->priceProductConcreteReader
@@ -413,12 +390,6 @@ class Reader implements ReaderInterface
             ->resolveProductPriceByPriceProductCriteria($priceProductTransfers, $priceProductCriteriaTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MoneyValueTransfer $moneyValueTransfer
-     * @param string $priceMode
-     *
-     * @return int|null
-     */
     protected function getPriceByPriceMode(MoneyValueTransfer $moneyValueTransfer, string $priceMode): ?int
     {
         if ($priceMode === $this->priceProductMapper->getNetPriceModeIdentifier()) {
@@ -448,11 +419,6 @@ class Reader implements ReaderInterface
         return false;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductDimensionTransfer|null $priceProductDimensionTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductDimensionTransfer
-     */
     protected function getPriceProductDimensionTransfer(?PriceProductDimensionTransfer $priceProductDimensionTransfer = null): PriceProductDimensionTransfer
     {
         if (!$priceProductDimensionTransfer) {
@@ -488,11 +454,6 @@ class Reader implements ReaderInterface
         return $this->mergeConcreteAndAbstractPrices($abstractPriceProductTransfers, $concretePriceProductTransfers);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return string
-     */
     protected function buildPriceProductIdentifier(PriceProductTransfer $priceProductTransfer): string
     {
         /** @var \Generated\Shared\Transfer\MoneyValueTransfer $moneyValueTransfer */
@@ -646,9 +607,6 @@ class Reader implements ReaderInterface
         return static::$resolvedPriceProductTransferCollection[$priceProductCriteriaIdentifier];
     }
 
-    /**
-     * @return string
-     */
     protected function getPriceModeIdentifierForNetType(): string
     {
         if (static::$priceModeIdentifierForNetType === null) {
@@ -790,11 +748,6 @@ class Reader implements ReaderInterface
         return $filteredPriceProductFilterTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductFilterTransfer $priceProductFilterTransfer
-     *
-     * @return string
-     */
     protected function buildPriceProductFilterIdentifier(PriceProductFilterTransfer $priceProductFilterTransfer): string
     {
         $priceProductFilterIdentifierTransfer = (new PriceProductFilterIdentifierTransfer())->fromArray(
@@ -806,11 +759,6 @@ class Reader implements ReaderInterface
         return md5(json_encode($priceProductFilterIdentifierTransfer->toArray(), JSON_THROW_ON_ERROR));
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductFilterTransfer $priceProductFilterTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductFilterTransfer
-     */
     protected function fillPriceProductFilterIdentifier(PriceProductFilterTransfer $priceProductFilterTransfer): PriceProductFilterTransfer
     {
         if ($priceProductFilterTransfer->getIdentifier() !== null) {

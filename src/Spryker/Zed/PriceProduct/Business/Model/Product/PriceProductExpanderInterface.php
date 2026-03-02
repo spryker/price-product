@@ -19,12 +19,6 @@ interface PriceProductExpanderInterface
      */
     public function expandPriceProductTransfers(array $priceProductTransfers): array;
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductConcreteTransfer $productConcreteTransfer
-     * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductConcreteTransfer
-     */
     public function mergeProductAbstractPricesIntoProductConcrete(
         ProductConcreteTransfer $productConcreteTransfer,
         ProductAbstractTransfer $productAbstractTransfer

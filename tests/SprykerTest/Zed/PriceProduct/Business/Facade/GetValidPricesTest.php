@@ -47,9 +47,6 @@ class GetValidPricesTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testGetValidPricesReturnsCollectionOfValidTransfers(): void
     {
         // Arrange
@@ -85,9 +82,6 @@ class GetValidPricesTest extends Unit
         $this->assertCount(count($priceProductTransfers), $resultPriceProductPrices);
     }
 
-    /**
-     * @return void
-     */
     public function testGetValidPricesReturnsCollectionOfValidTransfersWithNumericSKUs(): void
     {
         // Arrange
@@ -127,9 +121,6 @@ class GetValidPricesTest extends Unit
         $this->assertCount(count($priceProductTransfers), $resultPriceProductPrices);
     }
 
-    /**
-     * @return void
-     */
     public function testGetValidPricesReturnsProductPricesUsingAbstractProduct(): void
     {
         // Arrange
@@ -168,9 +159,6 @@ class GetValidPricesTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetValidPricesReturnsProductPricesUsingConcreteProduct(): void
     {
         // Arrange
@@ -209,9 +197,6 @@ class GetValidPricesTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetValidPricesReturnsProductPricesMergingConcreteWithAbstract(): void
     {
         // Arrange
@@ -255,9 +240,6 @@ class GetValidPricesTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testGetValidPricesReturnsProductPricesMergingConcreteWithAbstractWithDifferentCurrencies(): void
     {
         // Arrange
@@ -307,9 +289,6 @@ class GetValidPricesTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     protected function _before(): void
     {
         parent::_before();
@@ -317,9 +296,6 @@ class GetValidPricesTest extends Unit
         $this->clearProductPriceTransferCache();
     }
 
-    /**
-     * @return void
-     */
     protected function clearProductPriceTransferCache(): void
     {
         $reflectionClass = new ReflectionClass(Reader::class);

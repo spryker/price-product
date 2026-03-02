@@ -67,9 +67,6 @@ class PriceProductRemoverTest extends Unit
      */
     protected $priceProductQuery;
 
-    /**
-     * @return void
-     */
     public function setUp(): void
     {
         parent::setUp();
@@ -83,9 +80,6 @@ class PriceProductRemoverTest extends Unit
         $this->priceProductQuery = new SpyPriceProductQuery();
     }
 
-    /**
-     * @return void
-     */
     public function testRemovePriceProductStore(): void
     {
         // Assign

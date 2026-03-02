@@ -35,9 +35,6 @@ class FindPriceForTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testFindPriceForShouldReturnPriceBasedOnFilter(): void
     {
         // Arrange

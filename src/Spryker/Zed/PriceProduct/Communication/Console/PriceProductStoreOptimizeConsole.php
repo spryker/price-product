@@ -29,9 +29,6 @@ class PriceProductStoreOptimizeConsole extends Console
      */
     public const COMMAND_DESCRIPTION = 'Will delete all price_product_store records without any price dimension.';
 
-    /**
-     * @return void
-     */
     protected function configure(): void
     {
         parent::configure();
@@ -41,12 +38,6 @@ class PriceProductStoreOptimizeConsole extends Console
             ->setDescription(static::COMMAND_DESCRIPTION);
     }
 
-    /**
-     * @param \Symfony\Component\Console\Input\InputInterface $input
-     * @param \Symfony\Component\Console\Output\OutputInterface $output
-     *
-     * @return int
-     */
     public function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->getFacade()->deleteOrphanPriceProductStoreEntities();

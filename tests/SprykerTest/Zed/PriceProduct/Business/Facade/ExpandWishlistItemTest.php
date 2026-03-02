@@ -37,9 +37,6 @@ class ExpandWishlistItemTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testExpandWishlistItemWithPrices(): void
     {
         // Arrange

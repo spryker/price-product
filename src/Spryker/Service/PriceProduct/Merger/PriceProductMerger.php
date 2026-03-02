@@ -46,12 +46,6 @@ class PriceProductMerger implements PriceProductMergerInterface
         return $priceProductTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $abstractPriceProductTransfer
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $concretePriceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function resolveConcreteProductPrice(
         PriceProductTransfer $abstractPriceProductTransfer,
         PriceProductTransfer $concretePriceProductTransfer

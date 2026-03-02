@@ -82,11 +82,6 @@ class PriceProductAbstractWriter extends BaseProductPriceWriter implements Price
         $this->priceDimensionAbstractSaverPlugins = $priceDimensionAbstractSaverPlugins;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductAbstractTransfer
-     */
     public function persistProductAbstractPriceCollection(
         ProductAbstractTransfer $productAbstractTransfer
     ): ProductAbstractTransfer {
@@ -95,11 +90,6 @@ class PriceProductAbstractWriter extends BaseProductPriceWriter implements Price
         });
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductAbstractTransfer
-     */
     protected function executePersistProductAbstractPriceCollectionTransaction(
         ProductAbstractTransfer $productAbstractTransfer
     ): ProductAbstractTransfer {
@@ -116,12 +106,6 @@ class PriceProductAbstractWriter extends BaseProductPriceWriter implements Price
         return $productAbstractTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function executePersistProductAbstractPrice(
         ProductAbstractTransfer $productAbstractTransfer,
         PriceProductTransfer $priceProductTransfer
@@ -145,11 +129,6 @@ class PriceProductAbstractWriter extends BaseProductPriceWriter implements Price
         return $priceProductTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function executePriceDimensionAbstractSaverPlugins(
         PriceProductTransfer $priceProductTransfer
     ): PriceProductTransfer {
@@ -193,12 +172,6 @@ class PriceProductAbstractWriter extends BaseProductPriceWriter implements Price
         return $priceProductTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     * @param string $priceDimensionType
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function savePrice(
         PriceProductTransfer $priceProductTransfer,
         string $priceDimensionType
@@ -214,11 +187,6 @@ class PriceProductAbstractWriter extends BaseProductPriceWriter implements Price
         return $priceProductTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function persistPriceProductIfDimensionTypeDefault(
         PriceProductTransfer $priceProductTransfer
     ): PriceProductTransfer {

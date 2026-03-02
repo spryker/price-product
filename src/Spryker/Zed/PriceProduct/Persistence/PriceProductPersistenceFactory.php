@@ -41,9 +41,6 @@ class PriceProductPersistenceFactory extends AbstractPersistenceFactory
         return SpyPriceProductQuery::create();
     }
 
-    /**
-     * @return \Orm\Zed\PriceProduct\Persistence\SpyPriceProductDefaultQuery
-     */
     public function createPriceProductDefaultQuery(): SpyPriceProductDefaultQuery
     {
         return SpyPriceProductDefaultQuery::create();
@@ -57,17 +54,11 @@ class PriceProductPersistenceFactory extends AbstractPersistenceFactory
         return SpyPriceProductStoreQuery::create();
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Persistence\PriceProductDimensionQueryExpanderInterface
-     */
     public function createPriceProductDimensionQueryExpander(): PriceProductDimensionQueryExpanderInterface
     {
         return new PriceProductDimensionQueryExpander($this->getPriceDimensionQueryCriteriaPlugins());
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Persistence\Propel\PriceDimensionQueryExpander\DefaultPriceQueryExpanderInterface
-     */
     public function createDefaultPriceQueryExpander(): DefaultPriceQueryExpanderInterface
     {
         return new DefaultPriceQueryExpander();
@@ -81,9 +72,6 @@ class PriceProductPersistenceFactory extends AbstractPersistenceFactory
         return $this->getProvidedDependency(PriceProductDependencyProvider::PLUGIN_PRICE_DIMENSION_QUERY_CRITERIA);
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Persistence\Propel\Mapper\PriceProductMapper
-     */
     public function createPriceProductMapper(): PriceProductMapper
     {
         return new PriceProductMapper();

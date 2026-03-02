@@ -30,11 +30,6 @@ class PriceGrouper implements PriceGrouperInterface
      */
     protected $config;
 
-    /**
-     * @param \Spryker\Zed\PriceProduct\Business\Model\ReaderInterface $priceReader
-     * @param \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductMapperInterface $priceProductMapper
-     * @param \Spryker\Zed\PriceProduct\PriceProductConfig $config
-     */
     public function __construct(
         ReaderInterface $priceReader,
         PriceProductMapperInterface $priceProductMapper,
@@ -117,12 +112,6 @@ class PriceGrouper implements PriceGrouperInterface
         return $prices;
     }
 
-    /**
-     * @param array $prices
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return array
-     */
     protected function setPriceData(array $prices, PriceProductTransfer $priceProductTransfer): array
     {
         /** @var \Generated\Shared\Transfer\MoneyValueTransfer $priceMoneyValueTransfer */

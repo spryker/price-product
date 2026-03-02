@@ -11,16 +11,8 @@ use Generated\Shared\Transfer\CurrencyTransfer;
 
 interface CurrencyReaderInterface
 {
-    /**
-     * @return \Generated\Shared\Transfer\CurrencyTransfer
-     */
     public function getDefaultCurrencyTransfer(): CurrencyTransfer;
 
-    /**
-     * @param string $isoCode
-     *
-     * @return \Generated\Shared\Transfer\CurrencyTransfer
-     */
     public function getCurrencyTransferFromIsoCode(string $isoCode): CurrencyTransfer;
 
     /**

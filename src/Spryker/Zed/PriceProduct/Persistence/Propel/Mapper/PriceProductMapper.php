@@ -19,12 +19,6 @@ use Orm\Zed\PriceProduct\Persistence\SpyPriceProductStore;
 
 class PriceProductMapper
 {
-    /**
-     * @param \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStore $priceProductStoreEntity
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     public function mapPriceProductStoreEntityToPriceProductTransfer(
         SpyPriceProductStore $priceProductStoreEntity,
         PriceProductTransfer $priceProductTransfer
@@ -76,11 +70,6 @@ class PriceProductMapper
         return $priceProductTransfers;
     }
 
-    /**
-     * @param \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStore $priceProductStoreEntity
-     *
-     * @return bool
-     */
     protected function hasSeveralConcretesInSameAbstract(SpyPriceProductStore $priceProductStoreEntity): bool
     {
         if (!$priceProductStoreEntity->getPriceProduct()->getSpyProductAbstract()) {
@@ -130,12 +119,6 @@ class PriceProductMapper
         return $priceProductTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SpyPriceProductDefaultEntityTransfer $priceProductDefaultTransfer
-     * @param \Orm\Zed\PriceProduct\Persistence\SpyPriceProductDefault $priceProductDefaultEntity
-     *
-     * @return \Orm\Zed\PriceProduct\Persistence\SpyPriceProductDefault
-     */
     public function mapPriceProductDefaultTransferToPriceProductEntity(
         SpyPriceProductDefaultEntityTransfer $priceProductDefaultTransfer,
         SpyPriceProductDefault $priceProductDefaultEntity
@@ -148,12 +131,6 @@ class PriceProductMapper
         return $priceProductDefaultEntity;
     }
 
-    /**
-     * @param \Orm\Zed\PriceProduct\Persistence\SpyPriceProductDefault $priceProductDefaultEntity
-     * @param \Generated\Shared\Transfer\SpyPriceProductDefaultEntityTransfer $priceProductDefaultTransfer
-     *
-     * @return \Generated\Shared\Transfer\SpyPriceProductDefaultEntityTransfer
-     */
     public function mapPriceProductDefaultEntityToPriceProductDefaultTransfer(
         SpyPriceProductDefault $priceProductDefaultEntity,
         SpyPriceProductDefaultEntityTransfer $priceProductDefaultTransfer
@@ -161,11 +138,6 @@ class PriceProductMapper
         return $priceProductDefaultTransfer->fromArray($priceProductDefaultEntity->toArray());
     }
 
-    /**
-     * @param \Orm\Zed\PriceProduct\Persistence\SpyPriceProduct $priceProductEntity
-     *
-     * @return \Generated\Shared\Transfer\PriceTypeTransfer
-     */
     protected function createPriceTypeTransfer(SpyPriceProduct $priceProductEntity): PriceTypeTransfer
     {
         return (new PriceTypeTransfer())
@@ -174,23 +146,12 @@ class PriceProductMapper
             ->setPriceModeConfiguration($priceProductEntity->getPriceType()->getPriceModeConfiguration());
     }
 
-    /**
-     * @param \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStore $priceProductStoreEntity
-     *
-     * @return \Generated\Shared\Transfer\CurrencyTransfer
-     */
     protected function createCurrencyTransfer(SpyPriceProductStore $priceProductStoreEntity): CurrencyTransfer
     {
         return (new CurrencyTransfer())
             ->fromArray($priceProductStoreEntity->getCurrency()->toArray(), true);
     }
 
-    /**
-     * @param \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStore $priceProductStoreEntity
-     * @param array $priceProductStoreEntityData
-     *
-     * @return \Generated\Shared\Transfer\MoneyValueTransfer
-     */
     protected function createMoneyValueTransfer(
         SpyPriceProductStore $priceProductStoreEntity,
         array $priceProductStoreEntityData
@@ -205,27 +166,12 @@ class PriceProductMapper
             ->setCurrency($currencyTransfer);
     }
 
-    /**
-     * @param array $priceProductStoreEntityData
-     *
-     * @return \Generated\Shared\Transfer\PriceProductDimensionTransfer
-     */
     protected function createPriceProductDimensionTransfer(array $priceProductStoreEntityData): PriceProductDimensionTransfer
     {
         return (new PriceProductDimensionTransfer())
             ->fromArray($priceProductStoreEntityData, true);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     * @param \Orm\Zed\PriceProduct\Persistence\SpyPriceProduct $priceProductEntity
-     * @param \Generated\Shared\Transfer\PriceTypeTransfer $priceTypeTransfer
-     * @param \Generated\Shared\Transfer\MoneyValueTransfer $moneyValueTransfer
-     * @param \Generated\Shared\Transfer\PriceProductDimensionTransfer $priceProductDimensionTransfer
-     * @param array $priceProductStoreEntityData
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function mapPriceProductTransfer(
         PriceProductTransfer $priceProductTransfer,
         SpyPriceProduct $priceProductEntity,

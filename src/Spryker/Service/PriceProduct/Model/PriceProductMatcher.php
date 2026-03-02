@@ -147,12 +147,6 @@ class PriceProductMatcher implements PriceProductMatcherInterface
         return $matchedPriceProductTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
-     *
-     * @return bool
-     */
     protected function checkPriceProductByCriteria(PriceProductTransfer $priceProductTransfer, PriceProductCriteriaTransfer $priceProductCriteriaTransfer): bool
     {
         $priceProductTransfer
@@ -264,12 +258,6 @@ class PriceProductMatcher implements PriceProductMatcherInterface
         return $this->filterProductPrices($matchedPriceProductTransfers, $priceProductFilterTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     * @param \Generated\Shared\Transfer\PriceProductFilterTransfer $priceProductFilterTransfer
-     *
-     * @return bool
-     */
     protected function checkPriceProductOnFilter(PriceProductTransfer $priceProductTransfer, PriceProductFilterTransfer $priceProductFilterTransfer): bool
     {
         if ($priceProductTransfer->getSkuProduct() !== $priceProductFilterTransfer->getSku()) {

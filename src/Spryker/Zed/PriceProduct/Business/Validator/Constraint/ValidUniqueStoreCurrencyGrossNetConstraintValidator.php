@@ -77,11 +77,6 @@ class ValidUniqueStoreCurrencyGrossNetConstraintValidator extends AbstractConstr
         }
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $value
-     *
-     * @return \Generated\Shared\Transfer\PriceProductDimensionTransfer
-     */
     protected function getPriceProductDimensionTransfer(PriceProductTransfer $value): PriceProductDimensionTransfer
     {
         return (new PriceProductDimensionTransfer())

@@ -31,9 +31,6 @@ class FindProductAbstractPricesWithoutPriceExtractionByIdProductAbstractInTest e
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testFindProductAbstractPricesWithoutPriceExtractionByIdProductAbstractIn(): void
     {
         // Arrange

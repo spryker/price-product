@@ -28,9 +28,6 @@ class GetPriceModeIdentifierForBothTypeTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testGetPriceModeIdentifierForBothType(): void
     {
         // Act

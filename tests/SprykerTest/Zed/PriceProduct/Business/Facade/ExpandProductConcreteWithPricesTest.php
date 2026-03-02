@@ -28,9 +28,6 @@ class ExpandProductConcreteWithPricesTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testExpandProductConcreteWithPricesWillAddConcreteProductPricesWhenTheyAreDefinedForConcreteProduct(): void
     {
         // Arrange
@@ -58,9 +55,6 @@ class ExpandProductConcreteWithPricesTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testExpandProductConcreteWithPricesWillNotAddConcreteProductPricesWhenTheyAreDefinedOnlyForAbstractProduct(): void
     {
         // Arrange

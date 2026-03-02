@@ -57,11 +57,6 @@ class PriceProductDataHelper extends Module
      */
     protected const DEFAULT_CURRENT_STORE = 'DE';
 
-    /**
-     * @param array $priceProductOverride
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     public function havePriceProduct(array $priceProductOverride = []): PriceProductTransfer
     {
         $priceProductFacade = $this->getPriceProductFacade();
@@ -88,12 +83,6 @@ class PriceProductDataHelper extends Module
         return $priceProductTransfer;
     }
 
-    /**
-     * @param int $idProductAbstract
-     * @param array $priceProductOverride
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     public function havePriceProductAbstract(int $idProductAbstract, array $priceProductOverride = []): PriceProductTransfer
     {
         $priceProductTransfer = $this->createPriceProductTransfer(
@@ -116,11 +105,6 @@ class PriceProductDataHelper extends Module
         return $priceProductTransfer;
     }
 
-    /**
-     * @param array $priceTypeData
-     *
-     * @return \Generated\Shared\Transfer\PriceTypeTransfer
-     */
     public function havePriceType(array $priceTypeData = []): PriceTypeTransfer
     {
         $priceProductFacade = $this->getPriceProductFacade();
@@ -142,13 +126,6 @@ class PriceProductDataHelper extends Module
         return $priceTypeTransfer;
     }
 
-    /**
-     * @param int $fkPriceProduct
-     * @param int $grossPrice
-     * @param int $netPrice
-     *
-     * @return void
-     */
     public function updatePriceProductStore(int $fkPriceProduct, int $grossPrice, int $netPrice): void
     {
         $this->getPriceProductStoreQuery()
@@ -156,11 +133,6 @@ class PriceProductDataHelper extends Module
             ->update(['GrossPrice' => $grossPrice, 'NetPrice' => $netPrice]);
     }
 
-    /**
-     * @param int $idPriceProduct
-     *
-     * @return void
-     */
     private function cleanupPriceProduct(int $idPriceProduct): void
     {
         $this->debug(sprintf('Deleting Price Product: %d', $idPriceProduct));
@@ -171,11 +143,6 @@ class PriceProductDataHelper extends Module
             ->delete();
     }
 
-    /**
-     * @param int $idPriceProduct
-     *
-     * @return void
-     */
     private function cleanupPriceProductStore(int $idPriceProduct): void
     {
         $this->debug(sprintf('Deleting Price Product: %d', $idPriceProduct));
@@ -186,14 +153,6 @@ class PriceProductDataHelper extends Module
         }
     }
 
-    /**
-     * @param array $priceProductOverride
-     * @param int $netPrice
-     * @param int $grossPrice
-     * @param string $currencyIsoCode
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function createPriceProductTransfer(
         array $priceProductOverride,
         int $netPrice,
@@ -258,15 +217,6 @@ class PriceProductDataHelper extends Module
         return $priceProductTransfer;
     }
 
-    /**
-     * @param int $grossAmount
-     * @param int $netAmount
-     * @param \Generated\Shared\Transfer\StoreTransfer $storeTransfer
-     * @param \Generated\Shared\Transfer\CurrencyTransfer $currencyTransfer
-     * @param array $moneyValueOverride
-     *
-     * @return \Generated\Shared\Transfer\MoneyValueTransfer
-     */
     protected function createMoneyValueTransfer(
         int $grossAmount,
         int $netAmount,
@@ -285,11 +235,6 @@ class PriceProductDataHelper extends Module
             ->setStore($storeTransfer);
     }
 
-    /**
-     * @param string $name
-     *
-     * @return int|null
-     */
     protected function getPriceTypeId(string $name): ?int
     {
         $spyPriceTypeEntity = $this->getPriceProductQueryContainer()->queryPriceType($name)->findOne();
@@ -301,57 +246,36 @@ class PriceProductDataHelper extends Module
         return $spyPriceTypeEntity->getIdPriceType();
     }
 
-    /**
-     * @return \Spryker\Shared\PriceProduct\PriceProductConfig
-     */
     protected function getSharedPriceProductConfig(): PriceProductConfig
     {
         return new PriceProductConfig();
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProductStorage\Business\PriceProductStorageFacadeInterface
-     */
     protected function getPriceProductStorageFacade(): PriceProductStorageFacadeInterface
     {
         return $this->getLocator()->priceProductStorage()->facade();
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\PriceProductFacadeInterface
-     */
     protected function getPriceProductFacade(): PriceProductFacadeInterface
     {
         return $this->getLocator()->priceProduct()->facade();
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Persistence\PriceProductQueryContainerInterface
-     */
     protected function getPriceProductQueryContainer(): PriceProductQueryContainerInterface
     {
         return $this->getLocator()->priceProduct()->queryContainer();
     }
 
-    /**
-     * @return \Spryker\Zed\Store\Business\StoreFacadeInterface
-     */
     protected function getStoreFacade(): StoreFacadeInterface
     {
         return $this->getLocator()->store()->facade();
     }
 
-    /**
-     * @return \Spryker\Zed\Currency\Business\CurrencyFacadeInterface
-     */
     protected function getCurrencyFacade(): CurrencyFacadeInterface
     {
         return $this->getLocator()->currency()->facade();
     }
 
-    /**
-     * @return \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStoreQuery
-     */
     protected function getPriceProductStoreQuery(): SpyPriceProductStoreQuery
     {
         return SpyPriceProductStoreQuery::create();

@@ -9,11 +9,5 @@ namespace Spryker\Zed\PriceProduct\Business\Validator\Constraint\GreaterThanOrEq
 
 trait GreaterThanOrEqualOrEmptyConstraintValidatorTraitCommon
 {
-    /**
-     * @param mixed $value1
-     * @param mixed $value2
-     *
-     * @return bool
-     */
     abstract protected function executeCompareValues(mixed $value1, mixed $value2): bool;
 }

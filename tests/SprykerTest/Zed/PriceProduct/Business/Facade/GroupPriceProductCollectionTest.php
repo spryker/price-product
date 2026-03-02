@@ -56,9 +56,6 @@ class GroupPriceProductCollectionTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testGroupPriceProductCollectionGroupsProvidedCollection(): void
     {
         // Arrange
@@ -109,9 +106,6 @@ class GroupPriceProductCollectionTest extends Unit
         $this->assertEquals($expectedResult, $actualResult);
     }
 
-    /**
-     * @return void
-     */
     public function testGroupPriceProductCollectionDoesNotOverwritePriceDataByNull(): void
     {
         // Arrange
@@ -134,9 +128,6 @@ class GroupPriceProductCollectionTest extends Unit
         $this->assertSame($expectedPriceData, $actualResult['dummy currency 1']['priceData']);
     }
 
-    /**
-     * @return void
-     */
     public function testGroupPriceProductCollectionVolumePriceDataOfDefaultPriceTypeShouldBeSameAsInPriceData(): void
     {
         // Arrange
@@ -160,14 +151,6 @@ class GroupPriceProductCollectionTest extends Unit
         $this->assertSame($expectedPriceData, $actualResult[static::FAKE_CURRENCY][static::PRICE_DATA]);
     }
 
-    /**
-     * @param string $currencyCode
-     * @param string $priceTypeName
-     * @param int $grossAmount
-     * @param int $netAmount
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function createPriceProduct(string $currencyCode, string $priceTypeName, int $grossAmount, int $netAmount): PriceProductTransfer
     {
         return (new PriceProductTransfer())

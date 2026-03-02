@@ -19,9 +19,6 @@ use Spryker\Service\PriceProduct\Model\PriceProductMatcherInterface;
 
 class PriceProductServiceFactory extends AbstractServiceFactory
 {
-    /**
-     * @return \Spryker\Service\PriceProduct\Model\PriceProductMatcherInterface
-     */
     public function createPriceProductMatcher(): PriceProductMatcherInterface
     {
         return new PriceProductMatcher(
@@ -30,9 +27,6 @@ class PriceProductServiceFactory extends AbstractServiceFactory
         );
     }
 
-    /**
-     * @return \Spryker\Service\PriceProduct\GroupKeyBuilder\PriceProductGroupKeyBuilderInterface
-     */
     public function createPriceProductGroupKeyBuilder(): PriceProductGroupKeyBuilderInterface
     {
         return new PriceProductGroupKeyBuilder(
@@ -40,17 +34,11 @@ class PriceProductServiceFactory extends AbstractServiceFactory
         );
     }
 
-    /**
-     * @return \Spryker\Service\PriceProduct\FilterStrategy\SinglePriceProductFilterStrategyInterface
-     */
     public function createSinglePriceProductFilterStrategy(): SinglePriceProductFilterStrategyInterface
     {
         return new SinglePriceProductFilterMinStrategy();
     }
 
-    /**
-     * @return \Spryker\Service\PriceProduct\Merger\PriceProductMergerInterface
-     */
     public function createPriceProductMerger(): PriceProductMergerInterface
     {
         return new PriceProductMerger();

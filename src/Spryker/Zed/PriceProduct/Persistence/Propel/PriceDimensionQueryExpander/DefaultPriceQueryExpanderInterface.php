@@ -12,10 +12,5 @@ use Generated\Shared\Transfer\QueryCriteriaTransfer;
 
 interface DefaultPriceQueryExpanderInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\QueryCriteriaTransfer|null
-     */
     public function buildDefaultPriceDimensionQueryCriteria(PriceProductCriteriaTransfer $priceProductCriteriaTransfer): ?QueryCriteriaTransfer;
 }

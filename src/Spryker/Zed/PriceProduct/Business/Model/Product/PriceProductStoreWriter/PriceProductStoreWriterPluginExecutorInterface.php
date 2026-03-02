@@ -11,29 +11,11 @@ use Generated\Shared\Transfer\PriceProductTransfer;
 
 interface PriceProductStoreWriterPluginExecutorInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     public function executePriceDimensionAbstractSaverPlugins(PriceProductTransfer $priceProductTransfer): PriceProductTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     public function executePriceDimensionConcreteSaverPlugins(PriceProductTransfer $priceProductTransfer): PriceProductTransfer;
 
-    /**
-     * @param int $idPriceProductStore
-     *
-     * @return void
-     */
     public function executePriceProductStorePreDeletePlugins(int $idPriceProductStore): void;
 
-    /**
-     * @return bool|null
-     */
     public function executeOrphanPriceProductStoreRemovalVoterPlugins(): ?bool;
 }

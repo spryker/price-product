@@ -84,12 +84,6 @@ class PriceProductExpander implements PriceProductExpanderInterface
         return $expandedPriceProductTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductConcreteTransfer $productConcreteTransfer
-     * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductConcreteTransfer
-     */
     public function mergeProductAbstractPricesIntoProductConcrete(
         ProductConcreteTransfer $productConcreteTransfer,
         ProductAbstractTransfer $productAbstractTransfer
@@ -105,11 +99,6 @@ class PriceProductExpander implements PriceProductExpanderInterface
         return $productConcreteTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function expandPriceProductTransfer(PriceProductTransfer $priceProductTransfer): PriceProductTransfer
     {
         /** @var \Generated\Shared\Transfer\PriceProductDimensionTransfer $priceDimensionTransfer */
@@ -128,11 +117,6 @@ class PriceProductExpander implements PriceProductExpanderInterface
         return $priceProductTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductDimensionTransfer $priceProductDimensionTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductDimensionTransfer
-     */
     protected function expandPriceProductDimensionTransfer(PriceProductDimensionTransfer $priceProductDimensionTransfer): PriceProductDimensionTransfer
     {
         foreach ($this->priceProductDimensionExpanderStrategyPlugins as $priceProductDimensionExpanderStrategyPlugin) {
@@ -149,21 +133,11 @@ class PriceProductExpander implements PriceProductExpanderInterface
         return $priceProductDimensionTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CurrencyTransfer $currencyTransfer
-     *
-     * @return \Generated\Shared\Transfer\CurrencyTransfer
-     */
     protected function getCurrencyTransfer(CurrencyTransfer $currencyTransfer): CurrencyTransfer
     {
         return $this->currencyFacade->getByIdCurrency($currencyTransfer->getIdCurrencyOrFail());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MoneyValueTransfer $moneyValue
-     *
-     * @return \Generated\Shared\Transfer\MoneyValueTransfer
-     */
     protected function expandMoneyValue(MoneyValueTransfer $moneyValue): MoneyValueTransfer
     {
         if ($moneyValue->getFkStore() !== null) {

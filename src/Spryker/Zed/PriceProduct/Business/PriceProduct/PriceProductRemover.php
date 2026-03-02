@@ -34,11 +34,6 @@ class PriceProductRemover implements PriceProductRemoverInterface
      */
     protected $priceProductStoreWriterPluginExecutor;
 
-    /**
-     * @param \Spryker\Zed\PriceProduct\Persistence\PriceProductEntityManagerInterface $priceProductEntityManager
-     * @param \Spryker\Zed\PriceProduct\Persistence\PriceProductRepositoryInterface $priceProductRepository
-     * @param \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductStoreWriter\PriceProductStoreWriterPluginExecutorInterface $priceProductStoreWriterPluginExecutor
-     */
     public function __construct(
         PriceProductEntityManagerInterface $priceProductEntityManager,
         PriceProductRepositoryInterface $priceProductRepository,

@@ -52,9 +52,6 @@ class ValidatePricesTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testValidatePricesIsSuccessful(): void
     {
         // Arrange
@@ -71,9 +68,6 @@ class ValidatePricesTest extends Unit
         $this->assertCount(0, $validationResponseTransfer->getValidationErrors());
     }
 
-    /**
-     * @return void
-     */
     public function testValidatePricesFailsValidUniqueStoreCurrencyGrossNetConstraint(): void
     {
         // Arrange
@@ -104,9 +98,6 @@ class ValidatePricesTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testValidatePricesFailsValidUniqueStoreCurrencyCollectionConstraint(): void
     {
         // Arrange
@@ -138,9 +129,6 @@ class ValidatePricesTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testValidatePricesFailsValidCurrencyAssignedToStoreConstraint(): void
     {
         // Arrange
@@ -176,9 +164,6 @@ class ValidatePricesTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testValidateFailsValidNetAmountValue(): void
     {
         // Arrange
@@ -200,9 +185,6 @@ class ValidatePricesTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testValidatePricesFailsValidCurrencyValue(): void
     {
         // Arrange
@@ -223,9 +205,6 @@ class ValidatePricesTest extends Unit
         $this->assertSame('[0][moneyValue][fkCurrency]', $validationError->getPropertyPath());
     }
 
-    /**
-     * @return void
-     */
     public function testValidatePricesFailsValidStoreValue(): void
     {
         // Arrange

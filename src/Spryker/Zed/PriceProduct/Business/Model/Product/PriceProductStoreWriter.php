@@ -64,16 +64,6 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
      */
     protected $utilEncodingService;
 
-    /**
-     * @param \Spryker\Zed\PriceProduct\Persistence\PriceProductQueryContainerInterface $priceProductQueryContainer
-     * @param \Spryker\Zed\PriceProduct\Persistence\PriceProductEntityManagerInterface $priceProductEntityManager
-     * @param \Spryker\Zed\PriceProduct\Persistence\PriceProductRepositoryInterface $priceProductRepository
-     * @param \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductStoreWriter\PriceProductStoreWriterPluginExecutorInterface $priceProductStoreWriterPluginExecutor
-     * @param \Spryker\Zed\PriceProduct\PriceProductConfig $priceProductConfig
-     * @param \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductDefaultWriterInterface $priceProductDefaultWriter
-     * @param \Spryker\Zed\PriceProduct\Business\Model\PriceData\PriceDataChecksumGeneratorInterface $priceDataChecksumGenerator
-     * @param \Spryker\Zed\PriceProduct\Dependency\Service\PriceProductToUtilEncodingServiceInterface $utilEncodingService
-     */
     public function __construct(
         PriceProductQueryContainerInterface $priceProductQueryContainer,
         PriceProductEntityManagerInterface $priceProductEntityManager,
@@ -94,11 +84,6 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
         $this->utilEncodingService = $utilEncodingService;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return void
-     */
     public function deleteOrphanPriceProductStoreEntities(PriceProductTransfer $priceProductTransfer): void
     {
         $priceProductCriteriaTransfer = (new PriceProductCriteriaTransfer())
@@ -116,11 +101,6 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
         });
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     public function persistPriceProductStore(PriceProductTransfer $priceProductTransfer): PriceProductTransfer
     {
         /** @var \Generated\Shared\Transfer\MoneyValueTransfer $moneyValueTransfer */
@@ -165,9 +145,6 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
         return $priceProductTransfer;
     }
 
-    /**
-     * @return void
-     */
     public function deleteAllOrphanPriceProductStoreEntities(): void
     {
         $orphanPriceProductTransfers = $this->priceProductRepository
@@ -182,9 +159,6 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
         });
     }
 
-    /**
-     * @return bool
-     */
     protected function isDeleteOrphanStorePricesOnSaveEnabled(): bool
     {
         $isRemovalEnabledByVoters = $this->priceProductStoreWriterPluginExecutor->executeOrphanPriceProductStoreRemovalVoterPlugins();
@@ -196,11 +170,6 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
         return $this->priceProductConfig->getIsDeleteOrphanStorePricesOnSaveEnabled();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function savePriceProductEntity(PriceProductTransfer $priceProductTransfer): PriceProductTransfer
     {
         $priceProductTransfer
@@ -215,11 +184,6 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
         return $this->preparePriceProductForProductAbstract($priceProductTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function preparePriceProductForProductConcrete(PriceProductTransfer $priceProductTransfer): PriceProductTransfer
     {
         $idPriceProduct = $this->priceProductRepository
@@ -234,11 +198,6 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
             ->setIdPriceProduct($idPriceProduct);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function preparePriceProductForProductAbstract(PriceProductTransfer $priceProductTransfer): PriceProductTransfer
     {
         $idPriceProduct = $this->priceProductRepository
@@ -253,11 +212,6 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
             ->setIdPriceProduct($idPriceProduct);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return void
-     */
     protected function requireFieldsBaseOnProductType(PriceProductTransfer $priceProductTransfer): void
     {
         if ($priceProductTransfer->getIdProduct() === null) {
@@ -269,12 +223,6 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
         }
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MoneyValueTransfer $moneyValueTransfer
-     * @param \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStore $priceProductStoreEntity
-     *
-     * @return \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStore
-     */
     protected function setPriceDataChecksum(MoneyValueTransfer $moneyValueTransfer, SpyPriceProductStore $priceProductStoreEntity): SpyPriceProductStore
     {
         if ($moneyValueTransfer->getPriceData()) {
@@ -284,11 +232,6 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
         return $priceProductStoreEntity;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function persistPriceProductDimension(PriceProductTransfer $priceProductTransfer): PriceProductTransfer
     {
         /** @var \Generated\Shared\Transfer\PriceProductDimensionTransfer $priceDimensionTransfer */
@@ -308,11 +251,6 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
         return $priceProductTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function persistPriceProductDefaultDimensionType(
         PriceProductTransfer $priceProductTransfer
     ): PriceProductTransfer {
@@ -344,12 +282,6 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
         }
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     * @param \Generated\Shared\Transfer\MoneyValueTransfer $moneyValueTransfer
-     *
-     * @return \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStore
-     */
     protected function findPriceProductStoreEntity(
         PriceProductTransfer $priceProductTransfer,
         MoneyValueTransfer $moneyValueTransfer
@@ -373,11 +305,6 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
             ->findOneOrCreate();
     }
 
-    /**
-     * @param string $priceData
-     *
-     * @return string|null
-     */
     protected function generatePriceDataChecksumByPriceData(string $priceData): ?string
     {
         $priceDataArray = $this->utilEncodingService->decodeJson($priceData, true);

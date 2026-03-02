@@ -220,9 +220,6 @@ class PriceProductServiceTest extends Unit
         $this->assertCount(4, $mergedPriceProductTransfers);
     }
 
-    /**
-     * @return void
-     */
     public function testResolveProductPriceByPriceProductCriteriaIgnoresPricesWithEmptyValueForRequestedPriceType(): void
     {
         // Arrange
@@ -265,9 +262,6 @@ class PriceProductServiceTest extends Unit
         $this->assertSame($priceWithNetAmount, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testResolveProductPriceByPriceProductCriteriaReturnsNullIfThereAreNoPricesWithRequestedMode(): void
     {
         // Arrange
@@ -310,9 +304,6 @@ class PriceProductServiceTest extends Unit
         $this->assertNull($result);
     }
 
-    /**
-     * @return void
-     */
     public function testResolveProductPriceByPriceProductCriteriaReturnsPriceMatchedByCriteria(): void
     {
         // Arrange
@@ -380,9 +371,6 @@ class PriceProductServiceTest extends Unit
         );
     }
 
-    /**
-     * @return void
-     */
     public function testBuildPriceProductGroupKeyUsesDefaultPriceProductProperties(): void
     {
         // Arrange
@@ -401,9 +389,6 @@ class PriceProductServiceTest extends Unit
         $this->assertSame(static::EXPECTED_GROUP_KEY_EMPTY_DIMENSION, $priceProductGroupKey);
     }
 
-    /**
-     * @return void
-     */
     public function testBuildPriceProductGroupKeyUsesPriceProductDimensionProperties(): void
     {
         // Arrange
@@ -425,9 +410,6 @@ class PriceProductServiceTest extends Unit
         $this->assertSame(static::EXPECTED_GROUP_KEY_DEFAULT_DIMENSION, $priceProductGroupKey);
     }
 
-    /**
-     * @return array
-     */
     public function getDifferentPriceModeProductPricesData(): array
     {
         return [
@@ -464,13 +446,6 @@ class PriceProductServiceTest extends Unit
         ];
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     * @param int $expectedProductPrice
-     * @param string $priceMode
-     *
-     * @return void
-     */
     protected function assertExpectedProductPrice(
         PriceProductTransfer $priceProductTransfer,
         int $expectedProductPrice,
@@ -487,9 +462,6 @@ class PriceProductServiceTest extends Unit
         $this->assertEquals($expectedProductPrice, $moneyValueTransfer->getNetAmount());
     }
 
-    /**
-     * @return \Spryker\Service\PriceProduct\PriceProductServiceInterface
-     */
     protected function getPriceProductService(): PriceProductServiceInterface
     {
         return $this->tester->getLocator()->priceProduct()->service();
@@ -540,9 +512,6 @@ class PriceProductServiceTest extends Unit
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getPriceProductTransfersWithAllData(): array
     {
         return [
@@ -550,9 +519,6 @@ class PriceProductServiceTest extends Unit
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getPriceProductTransfersWithPartialConcreteData(): array
     {
         return [
@@ -560,9 +526,6 @@ class PriceProductServiceTest extends Unit
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getPriceProductTransfersWithMoreConcreteData(): array
     {
         return [
@@ -587,11 +550,6 @@ class PriceProductServiceTest extends Unit
         return $priceProductTransfers;
     }
 
-    /**
-     * @param array $priceProductDataSeed
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function buildPriceProductTransfer(array $priceProductDataSeed): PriceProductTransfer
     {
         $priceProductDataSeed = array_merge([PriceProductTransfer::PRICE_TYPE_NAME => static::PRICE_TYPE_DEFAULT], $priceProductDataSeed);
@@ -604,11 +562,6 @@ class PriceProductServiceTest extends Unit
             ->build();
     }
 
-    /**
-     * @param array $priceProductFilterDataSeed
-     *
-     * @return \Generated\Shared\Transfer\PriceProductFilterTransfer
-     */
     protected function buildPriceProductFilterTransfer(array $priceProductFilterDataSeed): PriceProductFilterTransfer
     {
         $priceProductFilterDataSeed = array_merge([

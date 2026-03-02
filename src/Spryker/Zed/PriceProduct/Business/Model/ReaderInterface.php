@@ -29,11 +29,6 @@ interface ReaderInterface
      */
     public function findPriceFor(PriceProductFilterTransfer $priceProductFilterTransfer);
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductFilterTransfer $priceProductFilterTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer|null
-     */
     public function findPriceProductFor(PriceProductFilterTransfer $priceProductFilterTransfer): ?PriceProductTransfer;
 
     /**

@@ -28,9 +28,6 @@ class FindPriceBySkuTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testFindPriceBySkuShouldReturnDefaultPriceForGivenProduct(): void
     {
         if ($this->tester->isDynamicStoreEnabled()) {

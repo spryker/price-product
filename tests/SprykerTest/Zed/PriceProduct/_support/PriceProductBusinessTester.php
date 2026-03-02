@@ -65,11 +65,6 @@ class PriceProductBusinessTester extends Actor
      */
     protected const PRICE_MODE_NET = 'NET_MODE';
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return string
-     */
     public function havePriceProductStore(PriceProductTransfer $priceProductTransfer): string
     {
         $storeTransfer = $this->haveStore();
@@ -99,15 +94,6 @@ class PriceProductBusinessTester extends Actor
             ->find();
     }
 
-    /**
-     * @param int $grossAmount
-     * @param int $netAmount
-     * @param string $skuAbstract
-     * @param string $skuConcrete
-     * @param string $currencyIsoCode
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     public function createProductWithAmount(
         int $grossAmount,
         int $netAmount,
@@ -149,15 +135,6 @@ class PriceProductBusinessTester extends Actor
         return $this->getFacade()->createPriceForProduct($priceProductTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductConcreteTransfer $productConcreteTransfer
-     * @param \Generated\Shared\Transfer\PriceTypeTransfer $priceTypeTransfer
-     * @param int $netPrice
-     * @param int $grossPrice
-     * @param string $currencyIsoCode
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     public function createPriceProductTransfer(
         ProductConcreteTransfer $productConcreteTransfer,
         PriceTypeTransfer $priceTypeTransfer,
@@ -194,13 +171,6 @@ class PriceProductBusinessTester extends Actor
         return $priceProductTransfer;
     }
 
-    /**
-     * @param string $abstractSku
-     * @param int $idAbstractProduct
-     * @param string|null $currencyIsoCode
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     public function createPriceProductForAbstractProduct(
         string $abstractSku,
         int $idAbstractProduct,
@@ -226,14 +196,6 @@ class PriceProductBusinessTester extends Actor
         return $this->getFacade()->createPriceForProduct($priceProductTransfer);
     }
 
-    /**
-     * @param string $abstractSku
-     * @param int $idConcreteProduct
-     * @param string|null $sku
-     * @param string|null $currencyIsoCode
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     public function createPriceProductForConcreteProduct(
         string $abstractSku,
         int $idConcreteProduct,
@@ -261,9 +223,6 @@ class PriceProductBusinessTester extends Actor
         return $this->getFacade()->createPriceForProduct($priceProductTransfer);
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\PriceProductCriteriaTransfer
-     */
     public function createPriceProductCriteriaTransfer(): PriceProductCriteriaTransfer
     {
         $config = $this->createSharedPriceProductConfig();
@@ -274,17 +233,11 @@ class PriceProductBusinessTester extends Actor
             ->setPriceDimension($priceProductDimensionTransfer);
     }
 
-    /**
-     * @return \Spryker\Zed\Currency\Business\CurrencyFacadeInterface
-     */
     public function getCurrencyFacade(): CurrencyFacadeInterface
     {
         return $this->getLocator()->currency()->facade();
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\PriceProductFilterTransfer
-     */
     public function havePriceProductFilterTransfer(): PriceProductFilterTransfer
     {
         $priceProductFilterTransfer = (new PriceProductFilterTransfer())
@@ -293,35 +246,21 @@ class PriceProductBusinessTester extends Actor
         return $priceProductFilterTransfer;
     }
 
-    /**
-     * @return \Orm\Zed\PriceProduct\Persistence\SpyPriceProductDefaultQuery
-     */
     protected function getPriceProductDefaultQuery(): SpyPriceProductDefaultQuery
     {
         return SpyPriceProductDefaultQuery::create();
     }
 
-    /**
-     * @return \Spryker\Shared\PriceProduct\PriceProductConfig
-     */
     public function createSharedPriceProductConfig(): PriceProductConfig
     {
         return new PriceProductConfig();
     }
 
-    /**
-     * @return \Spryker\Zed\Store\Business\StoreFacadeInterface
-     */
     protected function getStoreFacade(): StoreFacadeInterface
     {
         return $this->getLocator()->store()->facade();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function buildProduct(PriceProductTransfer $priceProductTransfer): PriceProductTransfer
     {
         $productConcreteTransfer = $this->haveProduct();
@@ -334,11 +273,6 @@ class PriceProductBusinessTester extends Actor
         return $priceProductTransfer;
     }
 
-    /**
-     * @param string $currencyIsoCode
-     *
-     * @return \Generated\Shared\Transfer\CurrencyTransfer
-     */
     protected function getCurrencyTransfer(string $currencyIsoCode): CurrencyTransfer
     {
         if (!$currencyIsoCode) {
@@ -348,14 +282,6 @@ class PriceProductBusinessTester extends Actor
         return $this->getCurrencyFacade()->fromIsoCode($currencyIsoCode);
     }
 
-    /**
-     * @param int $grossAmount
-     * @param int $netAmount
-     * @param \Generated\Shared\Transfer\StoreTransfer $storeTransfer
-     * @param \Generated\Shared\Transfer\CurrencyTransfer $currencyTransfer
-     *
-     * @return \Generated\Shared\Transfer\MoneyValueTransfer
-     */
     protected function createMoneyValueTransfer(
         int $grossAmount,
         int $netAmount,

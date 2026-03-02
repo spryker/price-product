@@ -28,9 +28,6 @@ class PriceProductEntityManagerTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testSavePriceProductAbstractSavePriceProductForProductAbstract(): void
     {
         //Arrange
@@ -44,9 +41,6 @@ class PriceProductEntityManagerTest extends Unit
         $this->assertSame($expectedIdPriceProduct, $actualIdPriceProduct);
     }
 
-    /**
-     * @return void
-     */
     public function testSavePriceProductConcreteSavePriceProductForProductConcrete(): void
     {
         //Arrange
@@ -60,9 +54,6 @@ class PriceProductEntityManagerTest extends Unit
         $this->assertSame($expectedIdPriceProduct, $actualIdPriceProduct);
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Persistence\PriceProductEntityManagerInterface
-     */
     protected function getEntityManager(): PriceProductEntityManagerInterface
     {
         return new PriceProductEntityManager();

@@ -31,9 +31,6 @@ class FindPricesBySkuGroupedForCurrentStoreTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testFindPricesBySkuGroupedShouldReturnGroupedPrices(): void
     {
         if ($this->tester->isDynamicStoreEnabled()) {

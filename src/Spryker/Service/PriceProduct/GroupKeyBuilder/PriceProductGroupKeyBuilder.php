@@ -25,11 +25,6 @@ class PriceProductGroupKeyBuilder implements PriceProductGroupKeyBuilderInterfac
         $this->preBuildPriceProductGroupKeyPlugins = $preBuildPriceProductGroupKeyPlugins;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return string
-     */
     public function buildPriceProductGroupKey(PriceProductTransfer $priceProductTransfer): string
     {
         return implode('-', array_filter($this->getGroupKeyParts($priceProductTransfer)));
@@ -92,11 +87,6 @@ class PriceProductGroupKeyBuilder implements PriceProductGroupKeyBuilderInterfac
         return array_values($priceDimensionKeys);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function executePreBuildPriceProductGroupKeyPlugins(
         PriceProductTransfer $priceProductTransfer
     ): PriceProductTransfer {

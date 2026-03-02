@@ -28,9 +28,6 @@ class PriceProductPersistenceTester extends Actor
 {
     use _generated\PriceProductPersistenceTesterActions;
 
-    /**
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     public function createPriceProductForProductConcrete(): PriceProductTransfer
     {
         $productConcrete = $this->haveProduct();
@@ -43,9 +40,6 @@ class PriceProductPersistenceTester extends Actor
         return $priceProductTransfer;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     public function createPriceProductForProductAbstract(): PriceProductTransfer
     {
         $productAbstract = $this->haveProductAbstract();

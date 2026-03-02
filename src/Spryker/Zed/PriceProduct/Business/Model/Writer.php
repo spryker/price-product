@@ -59,14 +59,6 @@ class Writer implements WriterInterface
      */
     protected $priceProductStoreWriter;
 
-    /**
-     * @param \Spryker\Zed\PriceProduct\Persistence\PriceProductQueryContainerInterface $queryContainer
-     * @param \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToTouchFacadeInterface $touchFacade
-     * @param \Spryker\Zed\PriceProduct\PriceProductConfig $priceConfig
-     * @param \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToProductFacadeInterface $productFacade
-     * @param \Spryker\Zed\PriceProduct\Business\Model\PriceType\PriceProductTypeReaderInterface $priceTypeReader
-     * @param \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductStoreWriterInterface $priceProductStoreWriter
-     */
     public function __construct(
         PriceProductQueryContainerInterface $queryContainer,
         PriceProductToTouchFacadeInterface $touchFacade,
@@ -195,12 +187,6 @@ class Writer implements WriterInterface
         }
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     * @param \Orm\Zed\PriceProduct\Persistence\SpyPriceProduct $priceProductEntity
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function savePriceProductEntity(PriceProductTransfer $priceProductTransfer, SpyPriceProduct $priceProductEntity): PriceProductTransfer
     {
         /** @var string $priceTypeName */

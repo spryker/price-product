@@ -45,11 +45,6 @@ class PriceProductEntityManager extends AbstractEntityManager implements PricePr
         $priceProductStoreCollection->delete();
     }
 
-    /**
-     * @param int $idPriceProductStore
-     *
-     * @return void
-     */
     public function deletePriceProductStore(int $idPriceProductStore): void
     {
         $priceProductStoreEntity = $this->getFactory()
@@ -64,11 +59,6 @@ class PriceProductEntityManager extends AbstractEntityManager implements PricePr
         $priceProductStoreEntity->delete();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\SpyPriceProductDefaultEntityTransfer $spyPriceProductDefaultEntityTransfer
-     *
-     * @return \Generated\Shared\Transfer\SpyPriceProductDefaultEntityTransfer
-     */
     public function savePriceProductDefaultEntity(
         SpyPriceProductDefaultEntityTransfer $spyPriceProductDefaultEntityTransfer
     ): SpyPriceProductDefaultEntityTransfer {
@@ -85,11 +75,6 @@ class PriceProductEntityManager extends AbstractEntityManager implements PricePr
         );
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return void
-     */
     public function deletePriceProductStoreByPriceProductTransfer(PriceProductTransfer $priceProductTransfer): void
     {
         /** @var \Generated\Shared\Transfer\MoneyValueTransfer $moneyValueTransfer */
@@ -110,11 +95,6 @@ class PriceProductEntityManager extends AbstractEntityManager implements PricePr
         $priceProductStoreCollection->delete();
     }
 
-    /**
-     * @param int $idPriceProduct
-     *
-     * @return void
-     */
     public function deletePriceProductById(int $idPriceProduct): void
     {
         /** @var \Propel\Runtime\Collection\ObjectCollection $priceProductCollection */
@@ -125,11 +105,6 @@ class PriceProductEntityManager extends AbstractEntityManager implements PricePr
         $priceProductCollection->delete();
     }
 
-    /**
-     * @param int $idPriceProductStore
-     *
-     * @return void
-     */
     public function deletePriceProductDefaultsByPriceProductStoreId(int $idPriceProductStore): void
     {
         /** @var \Propel\Runtime\Collection\ObjectCollection $priceProductDefaultCollection */
@@ -140,11 +115,6 @@ class PriceProductEntityManager extends AbstractEntityManager implements PricePr
         $priceProductDefaultCollection->delete();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductCollectionDeleteCriteriaTransfer $priceProductCollectionDeleteCriteriaTransfer
-     *
-     * @return void
-     */
     public function deletePriceProductDefaults(
         PriceProductCollectionDeleteCriteriaTransfer $priceProductCollectionDeleteCriteriaTransfer
     ): void {
@@ -169,11 +139,6 @@ class PriceProductEntityManager extends AbstractEntityManager implements PricePr
         $priceProductDefaultCollection->delete();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return int
-     */
     public function savePriceProductForProductConcrete(PriceProductTransfer $priceProductTransfer): int
     {
         $priceProductTransfer
@@ -192,11 +157,6 @@ class PriceProductEntityManager extends AbstractEntityManager implements PricePr
         return $priceProductEntity->getIdPriceProduct();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return int
-     */
     public function savePriceProductForProductAbstract(PriceProductTransfer $priceProductTransfer): int
     {
         $priceProductTransfer

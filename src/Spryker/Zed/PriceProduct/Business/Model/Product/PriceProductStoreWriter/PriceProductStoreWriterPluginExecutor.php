@@ -49,11 +49,6 @@ class PriceProductStoreWriterPluginExecutor implements PriceProductStoreWriterPl
         $this->orphanPriceProductStoreRemovalVoterPlugins = $orphanPriceProductStoreRemovalVoterPlugins;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     public function executePriceDimensionAbstractSaverPlugins(PriceProductTransfer $priceProductTransfer): PriceProductTransfer
     {
         /** @var \Generated\Shared\Transfer\PriceProductDimensionTransfer $priceDimensionTransfer */
@@ -71,11 +66,6 @@ class PriceProductStoreWriterPluginExecutor implements PriceProductStoreWriterPl
         return $priceProductTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     public function executePriceDimensionConcreteSaverPlugins(PriceProductTransfer $priceProductTransfer): PriceProductTransfer
     {
         /** @var \Generated\Shared\Transfer\PriceProductDimensionTransfer $priceDimensionTransfer */
@@ -93,11 +83,6 @@ class PriceProductStoreWriterPluginExecutor implements PriceProductStoreWriterPl
         return $priceProductTransfer;
     }
 
-    /**
-     * @param int $idPriceProductStore
-     *
-     * @return void
-     */
     public function executePriceProductStorePreDeletePlugins(int $idPriceProductStore): void
     {
         foreach ($this->priceProductStorePreDeletePlugins as $priceProductStorePreDeletePlugin) {
@@ -105,9 +90,6 @@ class PriceProductStoreWriterPluginExecutor implements PriceProductStoreWriterPl
         }
     }
 
-    /**
-     * @return bool|null
-     */
     public function executeOrphanPriceProductStoreRemovalVoterPlugins(): ?bool
     {
         $isRemovalEnabled = null;

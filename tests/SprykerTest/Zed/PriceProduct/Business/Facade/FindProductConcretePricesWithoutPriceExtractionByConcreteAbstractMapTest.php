@@ -32,9 +32,6 @@ class FindProductConcretePricesWithoutPriceExtractionByConcreteAbstractMapTest e
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testFindProductConcretePricesWithoutPriceExtractionByConcreteAbstractMapShouldReturnPricesGroupedByConcreteProductId(): void
     {
         // Arrange
@@ -81,9 +78,6 @@ class FindProductConcretePricesWithoutPriceExtractionByConcreteAbstractMapTest e
         $this->assertNotEmpty($prices2Result);
     }
 
-    /**
-     * @return void
-     */
     public function testFindProductConcretePricesWithoutPriceExtractionByConcreteAbstractMapShouldReturnEmptyArrayForEmptyInput(): void
     {
         // Arrange
@@ -100,9 +94,6 @@ class FindProductConcretePricesWithoutPriceExtractionByConcreteAbstractMapTest e
         $this->assertEmpty($result);
     }
 
-    /**
-     * @return void
-     */
     public function testFindProductConcretePricesWithoutPriceExtractionByConcreteAbstractMapShouldReturnEmptyPricesForNonExistentProducts(): void
     {
         // Arrange
@@ -124,9 +115,6 @@ class FindProductConcretePricesWithoutPriceExtractionByConcreteAbstractMapTest e
         $this->assertEmpty($result);
     }
 
-    /**
-     * @return void
-     */
     public function testFindProductConcretePricesWithoutPriceExtractionByConcreteAbstractMapShouldRespectPriceProductCriteria(): void
     {
         // Arrange
@@ -161,9 +149,6 @@ class FindProductConcretePricesWithoutPriceExtractionByConcreteAbstractMapTest e
         $this->assertIsArray($pricesResult);
     }
 
-    /**
-     * @return void
-     */
     public function testFindProductConcretePricesWithoutPriceExtractionByConcreteAbstractMapShouldIncludeAbstractPricesWhenConcreteHasNone(): void
     {
         // Arrange
@@ -214,9 +199,6 @@ class FindProductConcretePricesWithoutPriceExtractionByConcreteAbstractMapTest e
         }
     }
 
-    /**
-     * @return void
-     */
     public function testFindProductConcretePricesWithoutPriceExtractionByConcreteAbstractMapShouldOnlyReturnConcretePricesWhenCriteriaSpecifies(): void
     {
         // Arrange
@@ -270,9 +252,6 @@ class FindProductConcretePricesWithoutPriceExtractionByConcreteAbstractMapTest e
         }
     }
 
-    /**
-     * @return void
-     */
     public function testFindProductConcretePricesWithoutPriceExtractionByConcreteAbstractMapShouldHandleLargeProductMap(): void
     {
         // Arrange
@@ -313,9 +292,6 @@ class FindProductConcretePricesWithoutPriceExtractionByConcreteAbstractMapTest e
         }
     }
 
-    /**
-     * @return void
-     */
     public function testFindProductConcretePricesWithoutPriceExtractionByConcreteAbstractMapShouldWorkWithDifferentPriceDimensions(): void
     {
         // Arrange

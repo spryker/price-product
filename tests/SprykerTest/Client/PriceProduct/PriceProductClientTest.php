@@ -99,9 +99,6 @@ class PriceProductClientTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     protected function _before(): void
     {
         $this->tester->setDependency(StoreDependencyProvider::PLUGINS_STORE_EXPANDER, [
@@ -109,9 +106,6 @@ class PriceProductClientTest extends Unit
         ]);
     }
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -121,9 +115,6 @@ class PriceProductClientTest extends Unit
         $sessionClient->setContainer($sessionContainer);
     }
 
-    /**
-     * @return void
-     */
     public function testResolveProductPriceTransferWillReturnPriceDataByPriceType(): void
     {
         // Arrange
@@ -151,9 +142,6 @@ class PriceProductClientTest extends Unit
         $this->makeAsserts($currentProductPriceTransfer, $volumePriceDataDefaultDefaultJson, $volumePriceDataOriginJson);
     }
 
-    /**
-     * @return void
-     */
     public function testResolveProductPriceTransferByPriceProductFilterWillReturnPriceDataByPriceType(): void
     {
         // Arrange
@@ -183,9 +171,6 @@ class PriceProductClientTest extends Unit
         $this->makeAsserts($currentProductPriceTransfer, $volumePriceDataDefaultDefaultJson, $volumePriceDataOriginJson);
     }
 
-    /**
-     * @return void
-     */
     public function testShouldExecutePriceProductPostResolvePluginStackInResolveProductPriceTransferByPriceProductFilter(): void
     {
         // Assert
@@ -203,9 +188,6 @@ class PriceProductClientTest extends Unit
         ], new PriceProductFilterTransfer());
     }
 
-    /**
-     * @return void
-     */
     public function testShouldExecutePriceProductPostResolvePluginStackInResolveProductPriceTransfer(): void
     {
         // Assert
@@ -223,13 +205,6 @@ class PriceProductClientTest extends Unit
         ]);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CurrentProductPriceTransfer $currentProductPriceTransfer
-     * @param string $volumePriceDataDefaultDefaultJson
-     * @param string $volumePriceDataOriginJson
-     *
-     * @return void
-     */
     protected function makeAsserts(
         CurrentProductPriceTransfer $currentProductPriceTransfer,
         string $volumePriceDataDefaultDefaultJson,
@@ -255,13 +230,6 @@ class PriceProductClientTest extends Unit
         );
     }
 
-    /**
-     * @param int $netPrice
-     * @param int $grossPrice
-     * @param string $priceType
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function createPriceProductTransfer(int $netPrice, int $grossPrice, string $priceType): PriceProductTransfer
     {
         $currencyTransfer = (new CurrencyTransfer())
@@ -307,9 +275,6 @@ class PriceProductClientTest extends Unit
         ];
     }
 
-    /**
-     * @return \Spryker\Client\StoreExtension\Dependency\Plugin\StoreExpanderPluginInterface
-     */
     protected function createStoreStorageStoreExpanderPluginMock(): StoreExpanderPluginInterface
     {
         $storeStorageStoreExpanderPluginMock = $this->createMock(StoreExpanderPluginInterface::class);
@@ -321,9 +286,6 @@ class PriceProductClientTest extends Unit
         return $storeStorageStoreExpanderPluginMock;
     }
 
-    /**
-     * @return \Spryker\Client\PriceProductExtension\Dependency\Plugin\PriceProductPostResolvePluginInterface
-     */
     protected function getPriceProductPostResolvePluginMock(): PriceProductPostResolvePluginInterface
     {
         $priceProductPostResolvePluginMock = $this

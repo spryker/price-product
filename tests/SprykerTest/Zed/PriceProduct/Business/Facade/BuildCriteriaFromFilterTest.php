@@ -35,9 +35,6 @@ class BuildCriteriaFromFilterTest extends Unit
      */
     protected PriceProductBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testBuildCriteriaFromFilter(): void
     {
         // Arrange

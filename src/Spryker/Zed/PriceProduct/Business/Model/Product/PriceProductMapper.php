@@ -50,12 +50,6 @@ class PriceProductMapper implements PriceProductMapperInterface
      */
     protected $config;
 
-    /**
-     * @param \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToCurrencyFacadeInterface $currencyFacade
-     * @param \Spryker\Zed\PriceProduct\Business\Model\PriceType\ProductPriceTypeMapperInterface $priceProductTypeMapper
-     * @param \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToPriceFacadeInterface $priceFacade
-     * @param \Spryker\Zed\PriceProduct\PriceProductConfig $config
-     */
     public function __construct(
         PriceProductToCurrencyFacadeInterface $currencyFacade,
         ProductPriceTypeMapperInterface $priceProductTypeMapper,
@@ -150,11 +144,6 @@ class PriceProductMapper implements PriceProductMapperInterface
         return $productPriceCollection;
     }
 
-    /**
-     * @param \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStore $priceProductStoreEntity
-     *
-     * @return \Generated\Shared\Transfer\PriceProductTransfer
-     */
     protected function mapPriceProductStoreEntityToTransfer(
         SpyPriceProductStore $priceProductStoreEntity
     ): PriceProductTransfer {
@@ -183,11 +172,6 @@ class PriceProductMapper implements PriceProductMapperInterface
             ->setSkuProduct($this->findProductSku($priceProductEntity));
     }
 
-    /**
-     * @param \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStore $priceProductStoreEntity
-     *
-     * @return \Generated\Shared\Transfer\PriceProductDimensionTransfer
-     */
     protected function getPriceProductDimensionTransfer(
         SpyPriceProductStore $priceProductStoreEntity
     ): PriceProductDimensionTransfer {
@@ -200,11 +184,6 @@ class PriceProductMapper implements PriceProductMapperInterface
         return $priceProductDimensionTransfer;
     }
 
-    /**
-     * @param \Orm\Zed\PriceProduct\Persistence\SpyPriceProduct $priceProductEntity
-     *
-     * @return string|null
-     */
     protected function findProductSku(SpyPriceProduct $priceProductEntity): ?string
     {
         $productEntity = $priceProductEntity->getProduct();

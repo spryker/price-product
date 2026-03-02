@@ -85,9 +85,6 @@ use Symfony\Component\Validator\Constraint;
  */
 class PriceProductBusinessFactory extends AbstractBusinessFactory
 {
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\ReaderInterface
-     */
     public function createReaderModel(): ReaderInterface
     {
         return new Reader(
@@ -104,9 +101,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\WriterInterface
-     */
     public function createWriterModel(): WriterInterface
     {
         return new Writer(
@@ -119,9 +113,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\BulkWriterInterface
-     */
     public function createBulkWriterModel(): BulkWriterInterface
     {
         return new BulkWriter(
@@ -134,9 +125,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\PriceType\PriceProductTypeReaderInterface
-     */
     public function createPriceTypeReader(): PriceProductTypeReaderInterface
     {
         return new PriceProductTypeReader(
@@ -146,9 +134,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Currency\CurrencyReaderInterface
-     */
     public function createCurrencyReader(): CurrencyReaderInterface
     {
         return new CurrencyReaderWithCache(
@@ -156,9 +141,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductMapperInterface
-     */
     public function createPriceProductMapper(): PriceProductMapperInterface
     {
         return new PriceProductMapper(
@@ -169,9 +151,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductReader\PriceProductReaderPluginExecutor
-     */
     public function createPriceProductReaderPluginExecutor(): PriceProductReaderPluginExecutor
     {
         return new PriceProductReaderPluginExecutor(
@@ -179,9 +158,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductExpanderInterface
-     */
     public function createPriceProductExpander(): PriceProductExpanderInterface
     {
         return new PriceProductExpander(
@@ -193,17 +169,11 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\PriceType\ProductPriceTypeMapperInterface
-     */
     public function createPriceTypeMapper(): ProductPriceTypeMapperInterface
     {
         return new PriceProductTypeMapper();
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductAbstractReaderInterface
-     */
     public function createPriceProductAbstractReader(): PriceProductAbstractReaderInterface
     {
         return new PriceProductAbstractReader(
@@ -219,9 +189,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\PriceProductCriteriaBuilderInterface
-     */
     public function createProductCriteriaBuilder(): PriceProductCriteriaBuilderInterface
     {
         return new PriceProductCriteriaBuilder(
@@ -233,9 +200,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductConcreteReaderInterface
-     */
     public function createPriceProductConcreteReader(): PriceProductConcreteReaderInterface
     {
         return new PriceProductConcreteReader(
@@ -249,17 +213,11 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Internal\InstallInterface
-     */
     public function createInstaller(): InstallInterface
     {
         return new Install($this->createPriceTypeWriter(), $this->getConfig());
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\PriceGrouperInterface
-     */
     public function createPriceGrouper(): PriceGrouperInterface
     {
         return new PriceGrouper(
@@ -269,17 +227,11 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\PriceType\PriceTypeWriterInterface
-     */
     public function createPriceTypeWriter(): PriceTypeWriterInterface
     {
         return new PriceTypeWriter($this->getQueryContainer());
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductAbstractWriterInterface
-     */
     public function createPriceProductAbstractWriter(): PriceProductAbstractWriterInterface
     {
         return new PriceProductAbstractWriter(
@@ -293,9 +245,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductConcreteWriterInterface
-     */
     public function createPriceProductConcreteWriter(): PriceProductConcreteWriterInterface
     {
         return new PriceProductConcreteWriter(
@@ -310,17 +259,11 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\PriceData\PriceDataChecksumGeneratorInterface
-     */
     public function createPriceDataChecksumGenerator(): PriceDataChecksumGeneratorInterface
     {
         return new PriceDataChecksumGenerator();
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductStoreWriterInterface
-     */
     public function createPriceProductStoreWriter(): PriceProductStoreWriterInterface
     {
         return new PriceProductStoreWriter(
@@ -335,9 +278,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductStoreWriter\PriceProductStoreWriterPluginExecutorInterface
-     */
     public function createPriceProductStoreWriterPluginExecutor(): PriceProductStoreWriterPluginExecutorInterface
     {
         return new PriceProductStoreWriterPluginExecutor(
@@ -348,9 +288,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductDefaultWriterInterface
-     */
     public function createPriceProductDefaultWriter(): PriceProductDefaultWriterInterface
     {
         return new PriceProductDefaultWriter(
@@ -359,9 +296,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\PriceProduct\PriceProductRemoverInterface
-     */
     public function createPriceProductRemover(): PriceProductRemoverInterface
     {
         return new PriceProductRemover(
@@ -371,9 +305,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\PriceProduct\PriceProductDefaultRemoverInterface
-     */
     public function createPriceProductDefaultRemover(): PriceProductDefaultRemoverInterface
     {
         return new PriceProductDefaultRemover(
@@ -382,9 +313,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Deleter\PriceProductDeleterInterface
-     */
     public function createPriceProductDeleter(): PriceProductDeleterInterface
     {
         return new PriceProductDeleter(
@@ -401,9 +329,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         return $this->getProvidedDependency(PriceProductDependencyProvider::PLUGINS_PRICE_PRODUCT_COLLECTION_DELETE);
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Validator\PriceProductValidatorInterface
-     */
     public function createPriceProductValidator(): PriceProductValidatorInterface
     {
         return new PriceProductValidator(
@@ -421,9 +346,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         return $this->getProvidedDependency(PriceProductDependencyProvider::PLUGIN_PRICE_PRODUCT_VALIDATOR);
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Validator\ConstraintProvider\PriceProductConstraintProviderInterface
-     */
     public function createPriceProductConstraintProvider(): PriceProductConstraintProviderInterface
     {
         return new PriceProductConstraintProvider(
@@ -435,9 +357,6 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Symfony\Component\Validator\Constraint
-     */
     public function createValidUniqueStoreCurrencyCollectionConstraint(): Constraint
     {
         return new ValidUniqueStoreCurrencyCollectionConstraint(
@@ -445,25 +364,16 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Symfony\Component\Validator\Constraint
-     */
     public function createValidUniqueStoreCurrencyGrossNetConstraint(): Constraint
     {
         return new ValidUniqueStoreCurrencyGrossNetConstraint($this->getRepository());
     }
 
-    /**
-     * @return \Symfony\Component\Validator\Constraint
-     */
     public function createValidCurrencyAssignedToStoreConstraint(): Constraint
     {
         return new ValidCurrencyAssignedToStoreConstraint($this->getStoreFacade());
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Business\Expander\Wishlist\PriceProductWishlistItemExpanderInterface
-     */
     public function createPriceProductWishlsitItemExpander(): PriceProductWishlistItemExpanderInterface
     {
         return new PriceProductWishlistItemExpander(
@@ -473,49 +383,31 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToProductFacadeInterface
-     */
     public function getProductFacade(): PriceProductToProductFacadeInterface
     {
         return $this->getProvidedDependency(PriceProductDependencyProvider::FACADE_PRODUCT);
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToTouchFacadeInterface
-     */
     public function getTouchFacade(): PriceProductToTouchFacadeInterface
     {
         return $this->getProvidedDependency(PriceProductDependencyProvider::FACADE_TOUCH);
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToCurrencyFacadeInterface
-     */
     public function getCurrencyFacade(): PriceProductToCurrencyFacadeInterface
     {
         return $this->getProvidedDependency(PriceProductDependencyProvider::FACADE_CURRENCY);
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToPriceFacadeInterface
-     */
     public function getPriceFacade(): PriceProductToPriceFacadeInterface
     {
         return $this->getProvidedDependency(PriceProductDependencyProvider::FACADE_PRICE);
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToStoreFacadeInterface
-     */
     public function getStoreFacade(): PriceProductToStoreFacadeInterface
     {
         return $this->getProvidedDependency(PriceProductDependencyProvider::FACADE_STORE);
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\PriceProductConfig
-     */
     public function getModuleConfig(): PriceProductConfig
     {
         /** @var \Spryker\Zed\PriceProduct\PriceProductConfig $config */
@@ -524,17 +416,11 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         return $config;
     }
 
-    /**
-     * @return \Spryker\Service\PriceProduct\PriceProductServiceInterface
-     */
     public function getPriceProductService(): PriceProductServiceInterface
     {
         return $this->getProvidedDependency(PriceProductDependencyProvider::SERVICE_PRICE_PRODUCT);
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Dependency\Service\PriceProductToUtilEncodingServiceInterface
-     */
     public function getUtilEncodingService(): PriceProductToUtilEncodingServiceInterface
     {
         return $this->getProvidedDependency(PriceProductDependencyProvider::SERVICE_UTIL_ENCODING);
@@ -596,17 +482,11 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
         return $this->getProvidedDependency(PriceProductDependencyProvider::PLUGIN_PRICE_PRODUCT_STORE_PRE_DELETE);
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Dependency\External\PriceProductToValidationAdapterInterface
-     */
     public function getValidationAdapter(): PriceProductToValidationAdapterInterface
     {
         return $this->getProvidedDependency(PriceProductDependencyProvider::EXTERNAL_ADAPTER_VALIDATION);
     }
 
-    /**
-     * @return \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToEventInterface
-     */
     protected function getEventFacade(): PriceProductToEventInterface
     {
         return $this->getProvidedDependency(PriceProductDependencyProvider::FACADE_EVENT);
