@@ -14,6 +14,7 @@ use Generated\Shared\Transfer\PriceProductDimensionTransfer;
 use Generated\Shared\Transfer\PriceProductTransfer;
 use Generated\Shared\Transfer\ProductAbstractTransfer;
 use Generated\Shared\Transfer\ProductConcreteTransfer;
+use Generated\Shared\Transfer\StoreTransfer;
 use Spryker\Service\PriceProduct\PriceProductServiceInterface;
 use Spryker\Shared\PriceProduct\PriceProductConstants;
 use Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToCurrencyFacadeInterface;
@@ -46,6 +47,11 @@ class PriceProductExpander implements PriceProductExpanderInterface
      * @var \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToStoreFacadeInterface
      */
     protected $storeFacade;
+
+    /**
+     * @var array<int, \Generated\Shared\Transfer\StoreTransfer>
+     */
+    protected static array $storeCache = [];
 
     /**
      * @param array<\Spryker\Service\PriceProductExtension\Dependency\Plugin\PriceProductDimensionExpanderStrategyPluginInterface> $priceProductDimensionExpanderStrategyPlugins
@@ -141,9 +147,18 @@ class PriceProductExpander implements PriceProductExpanderInterface
     protected function expandMoneyValue(MoneyValueTransfer $moneyValue): MoneyValueTransfer
     {
         if ($moneyValue->getFkStore() !== null) {
-            $moneyValue->setStore($this->storeFacade->getStoreById($moneyValue->getFkStore()));
+            $moneyValue->setStore($this->getStoreById($moneyValue->getFkStore()));
         }
 
         return $moneyValue;
+    }
+
+    public function getStoreById(int $idStore): StoreTransfer
+    {
+        if (!isset(static::$storeCache[$idStore])) {
+            static::$storeCache[$idStore] = $this->storeFacade->getStoreById($idStore);
+        }
+
+        return static::$storeCache[$idStore];
     }
 }

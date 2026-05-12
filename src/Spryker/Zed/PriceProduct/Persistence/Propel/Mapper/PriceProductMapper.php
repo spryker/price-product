@@ -16,9 +16,20 @@ use Generated\Shared\Transfer\SpyPriceProductDefaultEntityTransfer;
 use Orm\Zed\PriceProduct\Persistence\SpyPriceProduct;
 use Orm\Zed\PriceProduct\Persistence\SpyPriceProductDefault;
 use Orm\Zed\PriceProduct\Persistence\SpyPriceProductStore;
+use Orm\Zed\PriceProduct\Persistence\SpyPriceType;
 
 class PriceProductMapper
 {
+    /**
+     * @var array<int, \Orm\Zed\PriceProduct\Persistence\SpyPriceType>
+     */
+    protected static array $priceTypeCache = [];
+
+    /**
+     * @var array<int, \Generated\Shared\Transfer\CurrencyTransfer>
+     */
+    protected static array $currencyCache = [];
+
     public function mapPriceProductStoreEntityToPriceProductTransfer(
         SpyPriceProductStore $priceProductStoreEntity,
         PriceProductTransfer $priceProductTransfer
@@ -140,16 +151,31 @@ class PriceProductMapper
 
     protected function createPriceTypeTransfer(SpyPriceProduct $priceProductEntity): PriceTypeTransfer
     {
+        $priceType = $this->getPriceType($priceProductEntity);
+
         return (new PriceTypeTransfer())
-            ->setIdPriceType($priceProductEntity->getPriceType()->getIdPriceType())
-            ->setName($priceProductEntity->getPriceType()->getName())
-            ->setPriceModeConfiguration($priceProductEntity->getPriceType()->getPriceModeConfiguration());
+            ->setIdPriceType($priceType->getIdPriceType())
+            ->setName($priceType->getName())
+            ->setPriceModeConfiguration($priceType->getPriceModeConfiguration());
+    }
+
+    protected function getPriceType(SpyPriceProduct $priceProductEntity): SpyPriceType
+    {
+        if (!isset(static::$priceTypeCache[$priceProductEntity->getFkPriceType()])) {
+            static::$priceTypeCache[$priceProductEntity->getFkPriceType()] = $priceProductEntity->getPriceType();
+        }
+
+        return static::$priceTypeCache[$priceProductEntity->getFkPriceType()];
     }
 
     protected function createCurrencyTransfer(SpyPriceProductStore $priceProductStoreEntity): CurrencyTransfer
     {
-        return (new CurrencyTransfer())
-            ->fromArray($priceProductStoreEntity->getCurrency()->toArray(), true);
+        if (!isset(static::$currencyCache[$priceProductStoreEntity->getFkCurrency()])) {
+            static::$currencyCache[$priceProductStoreEntity->getFkCurrency()] = (new CurrencyTransfer())
+                ->fromArray($priceProductStoreEntity->getCurrency()->toArray(), true);
+        }
+
+        return static::$currencyCache[$priceProductStoreEntity->getFkCurrency()];
     }
 
     protected function createMoneyValueTransfer(

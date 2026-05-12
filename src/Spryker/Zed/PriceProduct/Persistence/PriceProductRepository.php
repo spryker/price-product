@@ -677,6 +677,7 @@ class PriceProductRepository extends AbstractRepository implements PriceProductR
         $priceProductQuery = $this->createBasePriceProductStoreQuery($priceProductCriteriaTransfer)
             ->joinWith(static::PRICE_PRODUCT_RELATION_NAME)
             ->usePriceProductQuery()
+            ->leftJoinWithProduct()
             ->filterByFkProduct_In($productConcreteIds);
 
         if (!$priceProductCriteriaTransfer->getOnlyConcretePrices()) {
