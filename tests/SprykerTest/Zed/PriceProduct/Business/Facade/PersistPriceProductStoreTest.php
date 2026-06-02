@@ -105,10 +105,13 @@ class PersistPriceProductStoreTest extends Unit
         );
         $priceProductTransfer->setFkPriceType($priceTypeTransfer->getIdPriceType());
 
-        // Act
         $priceProductTransfer = $priceProductFacade->persistPriceProductStore($priceProductTransfer);
-        $priceProductTransfer->getMoneyValue()->setGrossAmount(8);
-        $priceProductTransfer = $priceProductFacade->persistPriceProductStore($priceProductTransfer);
+
+        // Directly insert an orphan spy_price_product_store record.
+        $this->tester->havePriceProductStore($priceProductTransfer);
+
+        // Act - second persist triggers the orphan removal check
+        $priceProductFacade->persistPriceProductStore($priceProductTransfer);
         $priceProductEntity = (new SpyPriceProductQuery())
             ->filterByIdPriceProduct($priceProductTransfer->getIdPriceProduct())
             ->findOne();

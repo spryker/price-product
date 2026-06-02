@@ -152,7 +152,9 @@ class PriceProductEntityManager extends AbstractEntityManager implements PricePr
             ->filterByFkPriceType($priceProductTransfer->getFkPriceType())
             ->findOneOrCreate();
 
-        $priceProductEntity->save();
+        if ($priceProductEntity->isNew() || $priceProductEntity->isModified()) {
+            $priceProductEntity->save();
+        }
 
         return $priceProductEntity->getIdPriceProduct();
     }

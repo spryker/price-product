@@ -130,7 +130,9 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
 
         $priceProductStoreEntity = $this->setPriceDataChecksum($moneyValueTransfer, $priceProductStoreEntity);
 
-        $priceProductStoreEntity->save();
+        if ($priceProductStoreEntity->isNew() || $priceProductStoreEntity->isModified()) {
+            $priceProductStoreEntity->save();
+        }
 
         /** @var int $idPriceProductStore */
         $idPriceProductStore = $priceProductStoreEntity->getIdPriceProductStore();

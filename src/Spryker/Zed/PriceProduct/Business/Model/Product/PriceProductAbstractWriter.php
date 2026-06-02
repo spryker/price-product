@@ -164,8 +164,10 @@ class PriceProductAbstractWriter extends BaseProductPriceWriter implements Price
             ->queryPriceProductForAbstractProduct($idProductAbstract, $priceTypeEntity->getIdPriceType())
             ->findOneOrCreate();
 
-        $priceProductEntity->setFkProductAbstract($idProductAbstract)
-            ->save();
+        $priceProductEntity->setFkProductAbstract($idProductAbstract);
+        if ($priceProductEntity->isNew() || $priceProductEntity->isModified()) {
+            $priceProductEntity->save();
+        }
 
         $priceProductTransfer->setIdPriceProduct($priceProductEntity->getIdPriceProduct());
 

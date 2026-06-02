@@ -189,9 +189,10 @@ class PriceProductConcreteWriter extends BaseProductPriceWriter implements Price
             ->queryPriceProductForConcreteProductBy($idProductConcrete, $priceTypeEntity->getIdPriceType())
             ->findOneOrCreate();
 
-        $priceProductEntity
-            ->setFkProduct($idProductConcrete)
-            ->save();
+        $priceProductEntity->setFkProduct($idProductConcrete);
+        if ($priceProductEntity->isNew() || $priceProductEntity->isModified()) {
+            $priceProductEntity->save();
+        }
 
         $priceProductTransfer->setIdPriceProduct($priceProductEntity->getIdPriceProduct());
 
