@@ -568,9 +568,61 @@ class PriceProductRepository extends AbstractRepository implements PriceProductR
             $priceProductStoreQuery,
         );
 
+        $productSkusGroupedByIdProductAbstract = $this->getConcreteSkusGroupedByIdProductAbstract(
+            $priceProductStoreEntities,
+            $concreteSkus,
+        );
+
         return $this->getFactory()
             ->createPriceProductMapper()
-            ->mapPriceProductStoreEntitiesToPriceProductTransfers($priceProductStoreEntities, $concreteSkus);
+            ->mapPriceProductStoreEntitiesToPriceProductTransfers(
+                $priceProductStoreEntities,
+                $concreteSkus,
+                $productSkusGroupedByIdProductAbstract,
+            );
+    }
+
+    /**
+     * @param array<\Orm\Zed\PriceProduct\Persistence\SpyPriceProductStore> $priceProductStoreEntities
+     * @param array<string> $concreteSkus
+     *
+     * @return array<int, array<string>>
+     */
+    protected function getConcreteSkusGroupedByIdProductAbstract(array $priceProductStoreEntities, array $concreteSkus): array
+    {
+        $productAbstractIds = [];
+        foreach ($priceProductStoreEntities as $priceProductStoreEntity) {
+            $idProductAbstract = $priceProductStoreEntity->getPriceProduct()->getFkProductAbstract();
+            if ($idProductAbstract === null) {
+                continue;
+            }
+
+            $productAbstractIds[$idProductAbstract] = $idProductAbstract;
+        }
+
+        if (!$productAbstractIds) {
+            return [];
+        }
+
+        /**
+         * @module Product
+         *
+         * @var \Propel\Runtime\Collection\ArrayCollection<array<string, mixed>> $productRows
+         */
+        $productRows = $this->getFactory()
+            ->getProductQuery()
+            ->filterByFkProductAbstract_In($productAbstractIds)
+            ->filterBySku_In($concreteSkus)
+            ->select([SpyProductTableMap::COL_FK_PRODUCT_ABSTRACT, SpyProductTableMap::COL_SKU])
+            ->find();
+
+        $concreteSkusGroupedByIdProductAbstract = [];
+        foreach ($productRows as $productRow) {
+            $idProductAbstract = $productRow[SpyProductTableMap::COL_FK_PRODUCT_ABSTRACT];
+            $concreteSkusGroupedByIdProductAbstract[$idProductAbstract][] = $productRow[SpyProductTableMap::COL_SKU];
+        }
+
+        return $concreteSkusGroupedByIdProductAbstract;
     }
 
     /**

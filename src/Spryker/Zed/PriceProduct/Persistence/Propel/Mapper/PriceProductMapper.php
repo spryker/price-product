@@ -54,17 +54,21 @@ class PriceProductMapper
     /**
      * @param array<\Orm\Zed\PriceProduct\Persistence\SpyPriceProductStore> $priceProductStoreEntities
      * @param array<string>|null $allowedProductSkus
+     * @param array<int, array<string>> $productSkusGroupedByIdProductAbstract
      *
      * @return array<\Generated\Shared\Transfer\PriceProductTransfer>
      */
-    public function mapPriceProductStoreEntitiesToPriceProductTransfers(array $priceProductStoreEntities, ?array $allowedProductSkus = null): array
-    {
+    public function mapPriceProductStoreEntitiesToPriceProductTransfers(
+        array $priceProductStoreEntities,
+        ?array $allowedProductSkus = null,
+        array $productSkusGroupedByIdProductAbstract = []
+    ): array {
         $priceProductTransfers = [];
 
         foreach ($priceProductStoreEntities as $priceProductStoreEntity) {
             $priceProductTransfer = $this->mapPriceProductStoreEntityToPriceProductTransfer($priceProductStoreEntity, new PriceProductTransfer());
 
-            if ($allowedProductSkus === null || !$this->hasSeveralConcretesInSameAbstract($priceProductStoreEntity)) {
+            if ($allowedProductSkus === null || !$this->hasSeveralConcretesInSameAbstract($priceProductStoreEntity, $productSkusGroupedByIdProductAbstract)) {
                 $priceProductTransfers[] = $priceProductTransfer;
 
                 continue;
@@ -75,25 +79,25 @@ class PriceProductMapper
                 $priceProductStoreEntity,
                 $priceProductTransfer,
                 $allowedProductSkus,
+                $productSkusGroupedByIdProductAbstract,
             );
         }
 
         return $priceProductTransfers;
     }
 
-    protected function hasSeveralConcretesInSameAbstract(SpyPriceProductStore $priceProductStoreEntity): bool
-    {
-        if (!$priceProductStoreEntity->getPriceProduct()->getSpyProductAbstract()) {
+    /**
+     * @param array<int, array<string>> $productSkusGroupedByIdProductAbstract
+     */
+    protected function hasSeveralConcretesInSameAbstract(
+        SpyPriceProductStore $priceProductStoreEntity,
+        array $productSkusGroupedByIdProductAbstract
+    ): bool {
+        if ($priceProductStoreEntity->getPriceProduct()->getFkProductAbstract() === null) {
             return false;
         }
 
-        /** @var \Orm\Zed\Product\Persistence\SpyProductAbstract $abstractProductEntity */
-        $abstractProductEntity = $priceProductStoreEntity->getPriceProduct()
-            ->getSpyProductAbstract();
-
-        return $abstractProductEntity
-            ->getSpyProducts()
-            ->count() !== 1;
+        return count($this->getConcreteProductSkusForAbstract($priceProductStoreEntity, $productSkusGroupedByIdProductAbstract)) !== 1;
     }
 
     /**
@@ -101,6 +105,7 @@ class PriceProductMapper
      * @param \Orm\Zed\PriceProduct\Persistence\SpyPriceProductStore $priceProductStoreEntity
      * @param \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer
      * @param array<string> $allowedProductSkus
+     * @param array<int, array<string>> $productSkusGroupedByIdProductAbstract
      *
      * @return array<\Generated\Shared\Transfer\PriceProductTransfer>
      */
@@ -108,26 +113,50 @@ class PriceProductMapper
         array $priceProductTransfers,
         SpyPriceProductStore $priceProductStoreEntity,
         PriceProductTransfer $priceProductTransfer,
-        array $allowedProductSkus
+        array $allowedProductSkus,
+        array $productSkusGroupedByIdProductAbstract
     ): array {
-        /** @var \Orm\Zed\Product\Persistence\SpyProductAbstract $abstractProductEntity */
-        $abstractProductEntity = $priceProductStoreEntity->getPriceProduct()
-            ->getSpyProductAbstract();
-        /** @var array<\Orm\Zed\Product\Persistence\SpyProduct> $concreateProductEntities */
-        $concreateProductEntities = $abstractProductEntity->getSpyProducts();
+        $productSkus = $this->getConcreteProductSkusForAbstract($priceProductStoreEntity, $productSkusGroupedByIdProductAbstract);
 
-        foreach ($concreateProductEntities as $concreateProductEntity) {
-            // Added due to propel entity cache system
-            if (!in_array($concreateProductEntity->getSku(), $allowedProductSkus)) {
+        foreach ($productSkus as $productSku) {
+            if (!in_array($productSku, $allowedProductSkus)) {
                 continue;
             }
 
             $priceProductTransfers[] = (new PriceProductTransfer())
                 ->fromArray($priceProductTransfer->toArray())
-                ->setSkuProduct($concreateProductEntity->getSku());
+                ->setSkuProduct($productSku);
         }
 
         return $priceProductTransfers;
+    }
+
+    /**
+     * @param array<int, array<string>> $productSkusGroupedByIdProductAbstract
+     *
+     * @return array<string>
+     */
+    protected function getConcreteProductSkusForAbstract(
+        SpyPriceProductStore $priceProductStoreEntity,
+        array $productSkusGroupedByIdProductAbstract
+    ): array {
+        if ($productSkusGroupedByIdProductAbstract !== []) {
+            $idProductAbstract = $priceProductStoreEntity->getPriceProduct()->getFkProductAbstract();
+
+            return $productSkusGroupedByIdProductAbstract[$idProductAbstract] ?? [];
+        }
+
+        $abstractProductEntity = $priceProductStoreEntity->getPriceProduct()->getSpyProductAbstract();
+        if ($abstractProductEntity === null) {
+            return [];
+        }
+
+        $productSkus = [];
+        foreach ($abstractProductEntity->getSpyProducts() as $spyProductEntity) {
+            $productSkus[] = $spyProductEntity->getSku();
+        }
+
+        return $productSkus;
     }
 
     public function mapPriceProductDefaultTransferToPriceProductEntity(

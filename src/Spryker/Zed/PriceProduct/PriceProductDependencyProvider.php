@@ -7,6 +7,7 @@
 
 namespace Spryker\Zed\PriceProduct;
 
+use Orm\Zed\Product\Persistence\SpyProductQuery;
 use Spryker\Zed\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Zed\Kernel\Container;
 use Spryker\Zed\PriceProduct\Communication\Plugin\DefaultPriceQueryCriteriaPlugin;
@@ -120,6 +121,11 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
     public const EXTERNAL_ADAPTER_VALIDATION = 'EXTERNAL_ADAPTER_VALIDATION';
 
     /**
+     * @var string
+     */
+    public const PROPEL_QUERY_PRODUCT = 'PROPEL_QUERY_PRODUCT';
+
+    /**
      * @param \Spryker\Zed\Kernel\Container $container
      *
      * @return \Spryker\Zed\Kernel\Container
@@ -156,6 +162,16 @@ class PriceProductDependencyProvider extends AbstractBundleDependencyProvider
     public function providePersistenceLayerDependencies(Container $container)
     {
         $container = $this->addPriceDimensionQueryCriteriaPlugins($container);
+        $container = $this->addProductPropelQuery($container);
+
+        return $container;
+    }
+
+    protected function addProductPropelQuery(Container $container): Container
+    {
+        $container->set(static::PROPEL_QUERY_PRODUCT, $container->factory(function (): SpyProductQuery {
+            return SpyProductQuery::create();
+        }));
 
         return $container;
     }
