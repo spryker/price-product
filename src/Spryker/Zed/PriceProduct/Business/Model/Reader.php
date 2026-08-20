@@ -518,13 +518,28 @@ class Reader implements ReaderInterface
     {
         $serializedData = [];
         foreach ($priceProductFilterTransfers as $priceProductFilterTransfer) {
-            $priceProductFilterTransfer = $this->fillPriceProductFilterIdentifier($priceProductFilterTransfer);
-            $serializedData[] = $priceProductFilterTransfer->getIdentifier();
+            $serializedData[] = $this->buildPriceProductFilterCacheKey($priceProductFilterTransfer);
         }
 
         sort($serializedData);
 
         return md5(implode(',', $serializedData));
+    }
+
+    /**
+     * Combines the externally provided filter identifier with the identifier built from the price relevant
+     * filter data. The externally provided identifier is not necessarily built from the filter data
+     * (e.g. it can be built from the cart item data), so it can not be used as a cache key on its own.
+     */
+    protected function buildPriceProductFilterCacheKey(PriceProductFilterTransfer $priceProductFilterTransfer): string
+    {
+        $priceProductFilterTransfer = $this->fillPriceProductFilterIdentifier($priceProductFilterTransfer);
+
+        return sprintf(
+            '%s-%s',
+            (string)$priceProductFilterTransfer->getIdentifier(),
+            $this->buildPriceProductFilterIdentifier($priceProductFilterTransfer),
+        );
     }
 
     /**
@@ -573,6 +588,7 @@ class Reader implements ReaderInterface
                 $priceProductFilterTransfer->getIdentifierOrFail(),
                 $priceProductTransfers,
                 $priceProductCriteriaTransfer,
+                $this->buildPriceProductFilterCacheKey($priceProductFilterTransfer),
             );
 
             if ($resolvedItemPrice) {
@@ -587,24 +603,28 @@ class Reader implements ReaderInterface
      * @param string $priceProductCriteriaIdentifier
      * @param array<array<\Generated\Shared\Transfer\PriceProductTransfer>> $priceProductTransfers
      * @param \Generated\Shared\Transfer\PriceProductCriteriaTransfer $priceProductCriteriaTransfer
+     * @param string|null $cacheKey
      *
      * @return \Generated\Shared\Transfer\PriceProductTransfer|null
      */
     protected function resolveProductPriceByPriceProductCriteria(
         string $priceProductCriteriaIdentifier,
         array $priceProductTransfers,
-        PriceProductCriteriaTransfer $priceProductCriteriaTransfer
+        PriceProductCriteriaTransfer $priceProductCriteriaTransfer,
+        ?string $cacheKey = null
     ): ?PriceProductTransfer {
-        if (!isset(static::$resolvedPriceProductTransferCollection[$priceProductCriteriaIdentifier])) {
+        $cacheKey = $cacheKey ?? $priceProductCriteriaIdentifier;
+
+        if (!isset(static::$resolvedPriceProductTransferCollection[$cacheKey])) {
             /** @var \Generated\Shared\Transfer\PriceProductTransfer $priceProductTransfer */
             $priceProductTransfer = $this->priceProductService->resolveProductPriceByPriceProductCriteria(
                 $priceProductTransfers[$priceProductCriteriaIdentifier],
                 $priceProductCriteriaTransfer,
             );
-            static::$resolvedPriceProductTransferCollection[$priceProductCriteriaIdentifier] = $priceProductTransfer;
+            static::$resolvedPriceProductTransferCollection[$cacheKey] = $priceProductTransfer;
         }
 
-        return static::$resolvedPriceProductTransferCollection[$priceProductCriteriaIdentifier];
+        return static::$resolvedPriceProductTransferCollection[$cacheKey];
     }
 
     protected function getPriceModeIdentifierForNetType(): string
