@@ -300,7 +300,6 @@ class GetValidPricesTest extends Unit
     {
         $reflectionClass = new ReflectionClass(Reader::class);
         $reflectionProperty = $reflectionClass->getProperty('resolvedPriceProductTransferCollection');
-        $reflectionProperty->setAccessible(true);
         $reflectionProperty->setValue([]);
     }
 }
