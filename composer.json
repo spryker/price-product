@@ -13,14 +13,15 @@
         "spryker/price": "^5.0.0",
         "spryker/price-product-extension": "^1.8.0",
         "spryker/product": "^5.6.0 || ^6.3.0",
-        "spryker/product-extension": "^1.4.0",
+        "spryker/product-extension": "^1.6.0",
         "spryker/propel-orm": "^1.0.0",
         "spryker/quote": "^2.1.0",
         "spryker/store": "^1.12.0",
         "spryker/symfony": "^3.0.0",
         "spryker/touch": "^3.0.0 || ^4.0.0",
-        "spryker/transfer": "^3.25.0",
+        "spryker/transfer": "^3.27.0",
         "spryker/util-encoding": "^2.0.0",
+        "spryker/uuid-behavior": "^1.0.0",
         "spryker/wishlist-extension": "^1.2.0"
     },
     "require-dev": {

@@ -25,6 +25,11 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
     use TransactionTrait;
 
     /**
+     * @var string
+     */
+    protected const KEY_UUID = 'uuid';
+
+    /**
      * @var \Spryker\Zed\PriceProduct\Persistence\PriceProductQueryContainerInterface
      */
     protected $priceProductQueryContainer;
@@ -119,7 +124,7 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
             $moneyValueTransfer,
         );
 
-        $priceProductStoreEntity->fromArray($moneyValueTransfer->toArray());
+        $priceProductStoreEntity->fromArray($this->getMoneyValueDataWithoutUuid($moneyValueTransfer));
 
         /** @var int $idPriceProduct */
         $idPriceProduct = $priceProductTransfer->getIdPriceProduct();
@@ -223,6 +228,21 @@ class PriceProductStoreWriter implements PriceProductStoreWriterInterface
         if ($priceProductTransfer->getIdProductAbstract() === null) {
             $priceProductTransfer->requireIdProduct();
         }
+    }
+
+    /**
+     * `MoneyValue.uuid` is declared by an optional feature and is not part of the data this writer owns.
+     * Passing it through would overwrite the identifier the entity already carries on update.
+     *
+     * @return array<string, mixed>
+     */
+    protected function getMoneyValueDataWithoutUuid(MoneyValueTransfer $moneyValueTransfer): array
+    {
+        $moneyValueData = $moneyValueTransfer->toArray();
+
+        unset($moneyValueData[static::KEY_UUID]);
+
+        return $moneyValueData;
     }
 
     protected function setPriceDataChecksum(MoneyValueTransfer $moneyValueTransfer, SpyPriceProductStore $priceProductStoreEntity): SpyPriceProductStore

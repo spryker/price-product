@@ -12,7 +12,9 @@ use Generated\Shared\Transfer\PriceProductDimensionTransfer;
 use Generated\Shared\Transfer\PriceProductTransfer;
 use Generated\Shared\Transfer\ProductConcreteTransfer;
 use Spryker\Zed\PriceProduct\Business\Model\PriceType\PriceProductTypeReaderInterface;
+use Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToCurrencyFacadeInterface;
 use Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToEventInterface;
+use Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToStoreFacadeInterface;
 use Spryker\Zed\PriceProduct\Dependency\PriceProductEvents;
 use Spryker\Zed\PriceProduct\Persistence\PriceProductEntityManagerInterface;
 use Spryker\Zed\PriceProduct\Persistence\PriceProductQueryContainerInterface;
@@ -81,8 +83,12 @@ class PriceProductConcreteWriter extends BaseProductPriceWriter implements Price
         PriceProductEntityManagerInterface $priceProductEntityManager,
         PriceProductConfig $config,
         PriceProductStoreWriterInterface $priceProductStoreWriter,
-        PriceProductToEventInterface $eventFacade
+        PriceProductToEventInterface $eventFacade,
+        PriceProductToCurrencyFacadeInterface $currencyFacade,
+        PriceProductToStoreFacadeInterface $storeFacade,
     ) {
+        parent::__construct($currencyFacade, $storeFacade);
+
         $this->priceTypeReader = $priceTypeReader;
         $this->priceProductQueryContainer = $priceProductQueryContainer;
         $this->priceProductDefaultWriter = $priceProductDefaultWriter;
@@ -104,6 +110,8 @@ class PriceProductConcreteWriter extends BaseProductPriceWriter implements Price
     protected function executePersistProductConcretePriceCollectionTransaction(
         ProductConcreteTransfer $productConcreteTransfer
     ): ProductConcreteTransfer {
+        $this->resolveMoneyValueIdentifiers($productConcreteTransfer->getPrices());
+
         foreach ($productConcreteTransfer->getPrices() as $priceProductTransfer) {
             /** @var \Generated\Shared\Transfer\MoneyValueTransfer $moneyValueTransfer */
             $moneyValueTransfer = $priceProductTransfer->requireMoneyValue()->getMoneyValue();

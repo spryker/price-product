@@ -11,6 +11,8 @@ use Generated\Shared\Transfer\PriceProductDimensionTransfer;
 use Generated\Shared\Transfer\PriceProductTransfer;
 use Generated\Shared\Transfer\ProductAbstractTransfer;
 use Spryker\Zed\PriceProduct\Business\Model\PriceType\PriceProductTypeReaderInterface;
+use Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToCurrencyFacadeInterface;
+use Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToStoreFacadeInterface;
 use Spryker\Zed\PriceProduct\Persistence\PriceProductEntityManagerInterface;
 use Spryker\Zed\PriceProduct\Persistence\PriceProductQueryContainerInterface;
 use Spryker\Zed\PriceProduct\PriceProductConfig;
@@ -62,6 +64,8 @@ class PriceProductAbstractWriter extends BaseProductPriceWriter implements Price
      * @param \Spryker\Zed\PriceProduct\Persistence\PriceProductEntityManagerInterface $priceProductEntityManager
      * @param \Spryker\Zed\PriceProduct\PriceProductConfig $config
      * @param \Spryker\Zed\PriceProduct\Business\Model\Product\PriceProductStoreWriterInterface $priceProductStoreWriter
+     * @param \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToCurrencyFacadeInterface $currencyFacade
+     * @param \Spryker\Zed\PriceProduct\Dependency\Facade\PriceProductToStoreFacadeInterface $storeFacade
      * @param array<\Spryker\Zed\PriceProductExtension\Dependency\Plugin\PriceDimensionAbstractSaverPluginInterface> $priceDimensionAbstractSaverPlugins
      */
     public function __construct(
@@ -71,8 +75,12 @@ class PriceProductAbstractWriter extends BaseProductPriceWriter implements Price
         PriceProductEntityManagerInterface $priceProductEntityManager,
         PriceProductConfig $config,
         PriceProductStoreWriterInterface $priceProductStoreWriter,
-        array $priceDimensionAbstractSaverPlugins = []
+        PriceProductToCurrencyFacadeInterface $currencyFacade,
+        PriceProductToStoreFacadeInterface $storeFacade,
+        array $priceDimensionAbstractSaverPlugins = [],
     ) {
+        parent::__construct($currencyFacade, $storeFacade);
+
         $this->priceTypeReader = $priceTypeReader;
         $this->priceProductQueryContainer = $priceProductQueryContainer;
         $this->priceProductDefaultWriter = $priceProductDefaultWriter;
@@ -93,6 +101,8 @@ class PriceProductAbstractWriter extends BaseProductPriceWriter implements Price
     protected function executePersistProductAbstractPriceCollectionTransaction(
         ProductAbstractTransfer $productAbstractTransfer
     ): ProductAbstractTransfer {
+        $this->resolveMoneyValueIdentifiers($productAbstractTransfer->getPrices());
+
         foreach ($productAbstractTransfer->getPrices() as $priceProductTransfer) {
             /** @var \Generated\Shared\Transfer\MoneyValueTransfer $moneyValueTransfer */
             $moneyValueTransfer = $priceProductTransfer->requireMoneyValue()->getMoneyValue();

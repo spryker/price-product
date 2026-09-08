@@ -190,4 +190,26 @@
         <property name="scope" type="string"/>
         <property name="permissionMask" type="int"/>
     </transfer>
+
+    <transfer name="ProductAbstractCollection">
+    </transfer>
+
+    <transfer name="ProductAbstractCriteria" strict="true">
+    </transfer>
+
+    <transfer name="ProductConcreteCollectionRequest" strict="true">
+    </transfer>
+
+    <transfer name="ProductConcreteCollectionResponse" strict="true">
+    </transfer>
+
+    <transfer name="ProductAbstractCollectionRequest" strict="true">
+    </transfer>
+
+    <transfer name="ProductAbstractCollectionResponse" strict="true">
+    </transfer>
+
+    <transfer name="Error">
+    </transfer>
+
 </transfers>

@@ -90,4 +90,17 @@ class PriceProductConfig extends AbstractBundleConfig
     {
         return static::IS_DELETE_ORPHAN_STORE_PRICES_ON_SAVE_ENABLED;
     }
+
+    /**
+     * Specification:
+     * - Enables the optional `uuid` column on the `spy_price_product_store` table.
+     * - When enabled, the `PriceProductStoreUuid` schema folder is merged during `propel:install`.
+     * - Consumers relying on price product store UUID (e.g. backend API price identifiers) require this to be enabled.
+     *
+     * @api
+     */
+    public function isPriceProductStoreUuidEnabled(): bool
+    {
+        return false;
+    }
 }

@@ -58,6 +58,8 @@ use Spryker\Zed\PriceProduct\Business\PriceProduct\PriceProductDefaultRemover;
 use Spryker\Zed\PriceProduct\Business\PriceProduct\PriceProductDefaultRemoverInterface;
 use Spryker\Zed\PriceProduct\Business\PriceProduct\PriceProductRemover;
 use Spryker\Zed\PriceProduct\Business\PriceProduct\PriceProductRemoverInterface;
+use Spryker\Zed\PriceProduct\Business\Product\Validator\ProductPriceValidator;
+use Spryker\Zed\PriceProduct\Business\Product\Validator\ProductPriceValidatorInterface;
 use Spryker\Zed\PriceProduct\Business\Validator\Constraint\ValidCurrencyAssignedToStoreConstraint;
 use Spryker\Zed\PriceProduct\Business\Validator\Constraint\ValidUniqueStoreCurrencyCollectionConstraint;
 use Spryker\Zed\PriceProduct\Business\Validator\Constraint\ValidUniqueStoreCurrencyGrossNetConstraint;
@@ -241,6 +243,8 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
             $this->getEntityManager(),
             $this->getConfig(),
             $this->createPriceProductStoreWriter(),
+            $this->getCurrencyFacade(),
+            $this->getStoreFacade(),
             $this->getPriceDimensionAbstractSaverPlugins(),
         );
     }
@@ -256,6 +260,8 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
             $this->getConfig(),
             $this->createPriceProductStoreWriter(),
             $this->getEventFacade(),
+            $this->getCurrencyFacade(),
+            $this->getStoreFacade(),
         );
     }
 
@@ -490,5 +496,14 @@ class PriceProductBusinessFactory extends AbstractBusinessFactory
     protected function getEventFacade(): PriceProductToEventInterface
     {
         return $this->getProvidedDependency(PriceProductDependencyProvider::FACADE_EVENT);
+    }
+
+    public function createProductPriceValidator(): ProductPriceValidatorInterface
+    {
+        return new ProductPriceValidator(
+            $this->getStoreFacade(),
+            $this->getCurrencyFacade(),
+            $this->createPriceTypeReader(),
+        );
     }
 }
