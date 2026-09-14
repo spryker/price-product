@@ -11,10 +11,16 @@ use Symfony\Component\Validator\Constraints\AbstractComparison;
 
 class GreaterThanOrEqualOrEmptyConstraint extends AbstractComparison
 {
-    /**
-     * @var string
-     */
-    public $message = 'This value should be equal or greater than {{ compared_value }} or empty.';
+    protected const string DEFAULT_MESSAGE = 'This value should be equal or greater than {{ compared_value }} or empty.';
+
+    public function __construct(mixed $value = null, mixed ...$arguments)
+    {
+        if (is_array($value) && !array_key_exists('message', $value)) {
+            $value['message'] = static::DEFAULT_MESSAGE;
+        }
+
+        parent::__construct($value, ...$arguments);
+    }
 
     public function getTargets(): string
     {
