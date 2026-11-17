@@ -316,9 +316,9 @@ class PriceProductDimensionQueryExpander implements PriceProductDimensionQueryEx
         string $dimensionName
     ): array {
         $conditionNames = [];
-        $i = 0;
+        $counter = 0;
         foreach ($queryCriteriaTransfer->getWithColumns() as $field => $value) {
-            $conditionName = sprintf('%s_%s', $dimensionName, $i);
+            $conditionName = sprintf('%s_%s', $dimensionName, $counter);
             $priceProductStoreQuery->addCond(
                 $conditionName,
                 $field,
@@ -327,7 +327,7 @@ class PriceProductDimensionQueryExpander implements PriceProductDimensionQueryEx
             );
 
             $conditionNames[] = $conditionName;
-            $i++;
+            $counter++;
         }
 
         return $conditionNames;

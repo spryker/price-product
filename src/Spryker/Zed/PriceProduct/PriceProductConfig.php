@@ -10,6 +10,7 @@ namespace Spryker\Zed\PriceProduct;
 use Spryker\Zed\Kernel\AbstractBundleConfig;
 
 /**
+ * @SuppressWarnings(PHPMD.BooleanGetMethodName)
  * @method \Spryker\Shared\PriceProduct\PriceProductConfig getSharedConfig()
  */
 class PriceProductConfig extends AbstractBundleConfig

@@ -5,3 +5,4 @@ parameters:
         - '#Parameter \#1 \$idEntity of method .+MoneyValueTransfer::setIdEntity\(\) expects int\|null, string given#'
         -
             identifier: missingType.iterableValue
+        - '#PHPDoc tag @SuppressWarnings has invalid value#'
